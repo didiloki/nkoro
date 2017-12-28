@@ -8,7 +8,7 @@ const path = require('path')
 const express = require('express')
 const passport = require('passport')
 // const moment = require('moment')
-const MomentHandler = require("handlebars.moment")
+const setup = require("./config/settings")
 
 const app = express()
 const PORT = process.env.PORT || 8000
@@ -23,7 +23,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 mongoose.Promise = global.Promise
-mongoose.connect((process.env.MONGODB_URI || process.env.MONGODB_LIVE), { useMongoClient : true })
+mongoose.connect((setup.MONGODB_URI || setup.MONGODB_LIVE), { useMongoClient : true })
 .then(()=>{ console.log("-- Mongoose ok ---")}, (err) =>{ console.log(err) } )
 
 app.use(cookieParser()); // read cookies (needed for auth)

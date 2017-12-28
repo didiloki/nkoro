@@ -2,6 +2,7 @@ var passport = require('passport')
 var Strategy = require('passport-facebook').Strategy
 
 const User = require('../models/user')
+const setup = require('./settings');
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').load();
@@ -15,8 +16,8 @@ if (process.env.NODE_ENV !== 'production') {
 // with a user object, which will be set at `req.user` in route handlers after
 // authentication.
 passport.use(new Strategy({
-    clientID: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
+    clientID: setup.CLIENT_ID,
+    clientSecret: setup.CLIENT_SECRET,
     callbackURL: '/auth/facebook/callback',
     profileFields:['id','email', 'profileUrl', 'name', 'age_range']
   }, function(accessToken, refreshToken, profile, done) {
