@@ -41,9 +41,10 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars')
 
 // global.curYear = moment().format('YYYY')
-
+app.set('trust proxy', 1)
 app.use(session({ secret: 'iamproudtobeinWDI13', resave: false,
-  saveUninitialized: true })); // session secret
+  saveUninitialized: true,
+  cookie: { secure: true, maxAge: 60000 } })); // session secret
 
 //Passport ================
 app.use(passport.initialize());
