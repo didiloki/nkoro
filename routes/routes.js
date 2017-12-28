@@ -41,8 +41,8 @@ router.get('/restaurants', (req, res) =>{
       .populate('tags')
       .exec(function(err, restaurants) {
         if (err) throw err;
-        // res.send(restaurants)
-        res.render('restaurant/index', { restaurants :restaurants})
+        res.send(restaurants)
+        // res.render('restaurant/index', { restaurants :restaurants})
       });
 
 });
