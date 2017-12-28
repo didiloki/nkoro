@@ -21,9 +21,9 @@ const routes = require('./routes/routes')
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').load();
 }
-
+console.log(setup)
 mongoose.Promise = global.Promise
-mongoose.connect((setup.MONGODB_URI || setup.MONGODB_LIVE), { useMongoClient : true })
+mongoose.connect((setup.MONGODB_LIVE), { useMongoClient : true })
 .then(()=>{ console.log("-- Mongoose ok ---")}, (err) =>{ console.log(err) } )
 
 app.use(cookieParser()); // read cookies (needed for auth)
