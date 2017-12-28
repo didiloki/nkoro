@@ -1,50 +1,7 @@
 <div class="main-wrapper scrollspy-container">
 
 			<!-- start hero-header -->
-			<div class="hero hero-sm" style="background-image:url('images/hero-header/02.jpg');">
-				<div class="container">
-
-					<div class="home-search-form">
-
-						<form>
-
-							<div class="form-group location-form">
-								<input type="text" class="form-control" placeholder="Where would you like to eat?">
-							</div>
-
-							<div class="form-group">
-								<div class="fancy-select"><select class="custom-select fancified" id="cuisine-type" style="width: 1px; height: 1px; display: block; position: absolute; top: 0px; left: 0px; opacity: 0;">
-									<option value="0">Cuisine Type</option>
-									<option value="1">African</option>
-									<option value="2">American‎</option>
-									<option value="3">Italian</option>
-									<option value="4">French</option>
-									<option value="5">Indochinese‎</option>
-									<option value="6">Halal</option>
-								</select><div class="form-control">Cuisine Type</div><ul class="options"><li data-raw-value="0" class="selected">Cuisine Type</li><li data-raw-value="1">African</li><li data-raw-value="2">American‎</li><li data-raw-value="3">Italian</li><li data-raw-value="4">French</li><li data-raw-value="5">Indochinese‎</li><li data-raw-value="6">Halal</li></ul></div>
-							</div>
-
-							<div class="form-group">
-								<div class="fancy-select"><select class="custom-select fancified" id="no-of-people" style="width: 1px; height: 1px; display: block; position: absolute; top: 0px; left: 0px; opacity: 0;">
-									<option value="0">Number Of People</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-								</select><div class="form-control">Number Of People</div><ul class="options"><li data-raw-value="0" class="selected">Number Of People</li><li data-raw-value="1">1</li><li data-raw-value="2">2</li><li data-raw-value="3">3</li><li data-raw-value="4">4</li><li data-raw-value="5">5</li><li data-raw-value="6">6</li></ul></div>
-							</div>
-
-							<button class="btn btn-primary btn-form">Find a Table</button>
-
-						</form>
-
-					</div>
-
-				</div>
-
-			</div>
+      {{>search}}
 			<!-- end hero-header -->
 
 			<div class="container pt-10 pb-30">
@@ -54,7 +11,7 @@
 						<li><a href="#">Home</a></li>
 						<li><a href="#">Result</a></li>
 						<li><a href="#">Restuarant</a></li>
-						<li class="active">Review for J'AIME by Jean-Michel Lorain</li>
+						<li class="active">Review for {{restaurant.name}}</li>
 					</ol>
 				</div>
 
@@ -111,100 +68,11 @@
 									</a>
 								</div>
 
-								<div class="restaurant-sm-item clearfix">
-									<a href="#">
-										<div class="image">
-											<img src="images/restaurant/08.jpg" alt="Image">
-										</div>
-										<div class="content">
-											<div class="rating-wrapper">
-												<div class="rating-item">
-													<span style="cursor: default;"><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: visible;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: 0%;"><span></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: visible;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: 0px;"><span></span></div></div></span><input type="hidden" class="rating" data-filled="oi oi-star" data-empty="oi oi-star" data-fractions="2" data-readonly="" value="3">
-												</div>
-											</div>
-											<h6>Le Normandie</h6>
-											<p class="location"><i class="fa fa-map-marker"></i> 48, Oriental Ave, Bang Rak,</p>
-										</div>
-									</a>
-								</div>
-
-								<div class="restaurant-sm-item clearfix">
-									<a href="#">
-										<div class="image">
-											<img src="images/restaurant/01.jpg" alt="Image">
-										</div>
-										<div class="content">
-											<div class="rating-wrapper">
-												<div class="rating-item">
-													<span style="cursor: default;"><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: visible;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: 50%;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: visible;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: 0px;"><span></span></div></div></span><input type="hidden" class="rating" data-filled="oi oi-star" data-empty="oi oi-star" data-fractions="2" data-readonly="" value="3.5">
-												</div>
-											</div>
-											<h6>The Smokin' Pug</h6>
-											<p class="location"><i class="fa fa-map-marker"></i> 88 Thanon Surawong, Si Phraya, Bang Rak </p>
-										</div>
-									</a>
-								</div>
-
-								<div class="restaurant-sm-item clearfix">
-									<a href="#">
-										<div class="image">
-											<img src="images/restaurant/02.jpg" alt="Image">
-										</div>
-										<div class="content">
-											<div class="rating-wrapper">
-												<div class="rating-item">
-													<span style="cursor: default;"><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: visible;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: 50%;"><span class="oi oi-star"></span></div></div></span><input type="hidden" class="rating" data-filled="oi oi-star" data-empty="oi oi-star" data-fractions="2" data-readonly="" value="4.5">
-												</div>
-											</div>
-											<h6>J'AIME by Jean-Michel Lorain</h6>
-											<p class="location"><i class="fa fa-map-marker"></i> 105 Soi Sathon 1, Thung Maha Mek, Sathon</p>
-										</div>
-									</a>
-								</div>
-
 							</div>
 
 						</div>
 
-						<div class="sidebar-module clearfix hidden-xs">
 
-							<div class="download-app-sm">
-
-								<div class="download-app-sm-inner">
-
-									<h6 class="text-primary">Get the Restuarant Finder app</h6>
-									<p>Abroad no chatty others my silent an. Fat way appear denote who wholly narrow gay settle.</p>
-
-									<div class="image">
-										<img src="images/app-download.jpg" alt="Image">
-									</div>
-
-									<div class="clearfix">
-										<a href="#" class="btn btn-primary btn-app mt-5 clearfix">
-											<span class="icon">
-												<i class="ion-social-apple"></i>
-											</span>
-											<span class="content">
-												Download on the
-												<span class="block">App Store</span>
-											</span>
-										</a>
-										<a href="#" class="btn btn-primary btn-app mt-5 clearfix">
-											<span class="icon">
-												<i class="ion-social-android"></i>
-											</span>
-											<span class="content">
-												Get it on
-												<span class="block">Google Play</span>
-											</span>
-										</a>
-									</div>
-
-								</div>
-
-							</div>
-
-						</div>
 
 					</div>
 
@@ -338,7 +206,8 @@
 							<div class="review-item-wrapper">
 
 								<ul class="review-item-list">
-
+                  {{#if restuarant}}
+                  {{#each restaurant.reviews as |review|}}
 									<li class="clearfix">
 
 										<div class="review-man">
@@ -349,7 +218,7 @@
 
 											</div>
 
-											<h6>Abdultohman Saidai</h6>
+											<h6>{{ review.user.firstname }} {{ review.user.lastname }}</h6>
 											<p>from Malaysia</p>
 
 										</div>
@@ -374,12 +243,12 @@
 													</div>
 												</div>
 
-												reviewed on Jan 16, 2016
+												reviewed on {{review.created_at}}
 
 											</div>
 
 											<div class="review-entry">
-												<p>It allowance prevailed enjoyment in it. Calling observe for who pressed raising his. Can connection instrument astonished unaffected his motionless preference.</p>
+												<p>{{ review.description }}</p>
 											</div>
 
 											<div class="meta-bottom">
@@ -404,16 +273,24 @@
 										</div>
 
 									</li>
+                  {{/each}}
+                  {{else}}
+                  <li>
+                      <div class="alert alert-danger">
+                          No information yet
+                      </div>
+                  </li>
 
+                  {{/if}}
 								</ul>
 
 							</div>
 
-							<div class="btn-wrappper">
+							<!-- <div class="btn-wrappper">
 
 								<a href="#" class="btn btn-primary">Load more reviews</a>
 
-							</div>
+							</div> -->
 
 						</div>
 

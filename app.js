@@ -44,7 +44,7 @@ app.set('view engine', 'handlebars')
 app.set('trust proxy', 1)
 app.use(session({ secret: 'iamproudtobeinWDI13', resave: false,
   saveUninitialized: true,
-  cookie: { secure: true, maxAge: 60000 } })); // session secret
+  cookie: { secure: true,maxAge: 60000 } })); // session secret
 
 //Passport ================
 app.use(passport.initialize());
