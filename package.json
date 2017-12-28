@@ -1,0 +1,30 @@
+{
+    "name": "mamaput",
+    "version": "1.0.0",
+    "description": "Rating all mamaputs in nigeria",
+    "main": "app.js",
+    "repository": "https://didiloki@bitbucket.org/didiloki/mamaput.git",
+    "author": "Ebere CUENETS",
+    "license": "MIT",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "bcrypt": "^1.0.3",
+        "body-parser": "^1.18.2",
+        "connect-flash": "^0.1.1",
+        "cookie-parser": "^1.4.3",
+        "dotenv": "^4.0.0",
+        "express": "^4.16.2",
+        "express-handlebars": "^3.0.0",
+        "express-session": "^1.15.6",
+        "express-validator": "^4.3.0",
+        "handlebars.moment": "^1.0.4",
+        "method-override": "^2.3.10",
+        "moment": "^2.20.1",
+        "mongoose": "^4.13.7",
+        "passport": "^0.4.0",
+        "passport-facebook": "*",
+        "request-ip": "^2.0.2"
+    }
+}
