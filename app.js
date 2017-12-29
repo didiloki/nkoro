@@ -8,20 +8,18 @@ const path = require('path')
 const express = require('express')
 const passport = require('passport')
 // const moment = require('moment')
+const MongoStore = require('connect-mongo')(session)
 const setup = require("./config/settings")
 
 const app = express()
 const PORT = process.env.PORT || 8000
-
-const requestIp = require('request-ip');
-app.use(requestIp.mw())
 
 const routes = require('./routes/routes')
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').load();
 }
-console.log(setup)
+
 mongoose.Promise = global.Promise
 mongoose.connect((setup.MONGODB_LIVE), { useMongoClient : true })
 .then(()=>{ console.log("-- Mongoose ok ---")}, (err) =>{ console.log(err) } )
@@ -41,10 +39,13 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars')
 
 // global.curYear = moment().format('YYYY')
-app.set('trust proxy', 1)
-app.use(session({ secret: 'iamproudtobeinWDI13', resave: false,
+// app.set('trust proxy', 1)
+app.use(session({
+  secret: 'iamproudtobeinWDI13',
+  resave: false,
   saveUninitialized: true,
-  cookie: { secure: true,maxAge: 60000 } })); // session secret
+  store: new MongoStore({ url: setup.MONGODB_LIVE }),
+})); // session secret
 
 //Passport ================
 app.use(passport.initialize());
@@ -55,18 +56,15 @@ app.use((req, res, next) => {
   // before every route, attach the flash messages and current user to res.locals
   res.locals.alerts = req.flash();
   res.locals.currentUser = req.user;
-  res.locals.curIP = req.clientIp;
 
   next();
 });
 
 app.locals.copyright = "Copyrights Nkoro NG " + new Date().getFullYear() //get current year
 
-// console.log(process.env)
-console.log('The value of PORT is:', process.env.PORT);
-
 // routes ===============================================================
 app.use('/', routes)
+
 app.get('*', (req, res)=>{
   res.render('error')
 })

@@ -200,49 +200,7 @@
 
 						</div>
 
-						<div class="restaurant-grid-wrapper mb-30">
-
-							<div class="GridLex-gap-30">
-
-								<div class="GridLex-grid-noGutter-equalHeight">
-                  {{#if restaurants}}
-
-                  {{#each restaurants as |r|}}
-									<div class="GridLex-col-4_sm-6_xs-6_xss-12">
-
-										<div class="restaurant-grid-item">
-											<a href="/restaurants/show/{{r._id}}">
-												<div class="image">
-													<img src="images/restaurant/01.jpg" alt="Image">
-												</div>
-												<div class="content">
-													<h5>{{r.name}}</h5>
-													<p class="location"><i class="fa fa-map-marker"></i> 88 Thanon Surawong, Si Phraya, Bang Rak </p>
-													<div class="rating-wrapper">
-														<div class="rating-item">
-															<span style="cursor: default;"><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: visible;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: 50%;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: visible;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: 0px;"><span></span></div></div></span><input type="hidden" class="rating" data-filled="oi oi-star" data-empty="oi oi-star" data-fractions="2" data-readonly="" value="3.5">
-														</div>
-														<span class="texting"> (27 reviews)</span>
-													</div>
-													<p class="cuisine">Cuisine: <span>Italian</span> <span>Seafood</span> <span>Bistro</span></p>
-												</div>
-											</a>
-										</div>
-
-									</div>
-
-									{{/each}}
-                  {{else}}
-                    <div class="alert alert-danger">
-                        Nothing Found!
-                    </div>
-                  {{/if}}
-								</div>
-
-							</div>
-
-						</div>
-
+						  {{>restaurant-results}}
 						<div class="pagination-wrapper">
 
 							<div class="GridLex-grid-middle GridLex-grid-noGutter">

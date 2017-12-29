@@ -1,8 +1,4 @@
 /*------------------------------------------------------------------
-Project:        Restaurant Finder
-Author:         Crenoveative
-URL:            http://crenoveative.com/
-Created:        24/10/2016
 -------------------------------------------------------------------*/
 /*------------------------------------------------------------------
 * Table of Content
@@ -1082,10 +1078,10 @@ ul.no-margin,
     height: 100%;
     background: rgba(0, 0, 0, 0.4);
     /* browsers */
-    
+
     filter: progid: DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#7c000000', endColorstr='#7c000000');
     /* IE */
-    
+
     -webkit-transition: all 0.4s ease-in-out 0s;
     -moz-transition: all 0.4s ease-in-out 0s;
     -ms-transition: all 0.4s ease-in-out 0s;
@@ -2112,8 +2108,8 @@ a.link-alt:hover {
  */
 /**
 .section-title { font-size: 20px; line-height: 24px; margin: 0 0 40px; overflow: hidden; }
-.section-title h3 { text-transform: uppercase; margin: 0; line-height: 1.15 } 
-.section-title h4 { text-transform: uppercase; margin: 0; line-height: 1.15 } 
+.section-title h3 { text-transform: uppercase; margin: 0; line-height: 1.15 }
+.section-title h4 { text-transform: uppercase; margin: 0; line-height: 1.15 }
 .section-title p { font-weight: 300; margin: 0; margin-top: 15px; }
 */
 
