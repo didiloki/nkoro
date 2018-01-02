@@ -17,13 +17,8 @@ const userSchema = new Schema({
       unique: true,
       required : [ true, 'Email Cannot be empty']
     },
-    // password :{
-    //     type : String,
-    //     required : true
-    // },
-    username :{
-      type : String,
-      unique: true
+    photo :{
+        type : String
     },
     token : {
       type : String,

@@ -16,16 +16,15 @@ const restaurantSchema = new Schema({
     description: String,
     image : String,
     reviews : [reviewId],
+    final_rating : Number,
     tags : [tagId],
-    rating : {
-        food : Number,
-        service : Number,
-        recommend : Number,
-        clean : Number
-    },
     created_at :{ type: Date, default : Date.now }
 
 })
+
+restaurantSchema.virtual('fullAddress').get(function () {
+  return this.location.address + ', ' + this.location.city + ', ' + this.location.country
+});
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema)
 module.exports = Restaurant

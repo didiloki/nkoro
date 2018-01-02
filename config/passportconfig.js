@@ -19,27 +19,23 @@ passport.use(new Strategy({
     clientID: setup.CLIENT_ID,
     clientSecret: setup.CLIENT_SECRET,
     callbackURL: '/auth/facebook/callback',
-    profileFields:['id','email', 'profileUrl', 'name', 'age_range']
+    profileFields:['id','email', 'profileUrl', 'picture', 'name', 'age_range']
   }, function(accessToken, refreshToken, profile, done) {
-        console.log("profile")
-        console.log(profile)
-        console.log("----------")
-        console.log("accessToken")
-        console.log(accessToken)
-        console.log("----------")
         var new_user = new User({
             email:profile.emails[0].value,
             firstname:profile.name.givenName,
             lastname : profile.name.familyName,
+            photo : profile.photos[0].value,
             token: accessToken
 
         })
-        //
+        console.log(new_user);
         // /* save if new */
         User.findOne({ email : profile.emails[0].value }, function(err, u) {
             if(!u) {
                 new_user.save(function(err, user) {
                     if(err) return done(err)
+                    console.log(user)
                     done(null,user)
                 });
             } else {

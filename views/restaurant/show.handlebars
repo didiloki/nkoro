@@ -26,7 +26,8 @@
 						<div class="restaurant-grid-item bg-white">
 							<a href="restaurant-detail.html">
 								<div class="image">
-									<img src="/images/restaurant/02.jpg" alt="Image">
+									<!-- <img src="/images/restaurant/02.jpg" alt="Image"> -->
+                  maps
 								</div>
 								<div class="content">
 									<h5>{{restaurant.name}}</h5>
@@ -59,7 +60,7 @@
 										<div class="content">
 											<div class="rating-wrapper">
 												<div class="rating-item">
-													<span style="cursor: default;"><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: visible;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: 0%;"><span></span></div></div></span><input type="hidden" class="rating" data-filled="oi oi-star" data-empty="oi oi-star" data-fractions="2" data-readonly="" value="4">
+													<input type="hidden" class="rating" data-filled="oi oi-star" data-empty="oi oi-star" data-fractions="2" data-readonly="" value="4">
 												</div>
 											</div>
 											<h6>DID - Dine in the Dark </h6>
@@ -206,7 +207,8 @@
 							<div class="review-item-wrapper">
 
 								<ul class="review-item-list">
-                  {{#if restuarant}}
+                  {{!#if restuarant.reviews.length }}
+                  <!-- Lenght: {{!restuarant.reviews.length}} -->
                   {{#each restaurant.reviews as |review|}}
 									<li class="clearfix">
 
@@ -214,7 +216,7 @@
 
 											<div class="image">
 
-												<img src="images/man/01.jpg" alt="images">
+												<img src="{{review.user.photo}}" alt="images">
 
 											</div>
 
@@ -254,10 +256,10 @@
 											<div class="meta-bottom">
 
 												<ul class="review-score-list clearfix">
-													<li>Food: 7</li>
-													<li>Service: 6</li>
-													<li>Recommend: 8</li>
-													<li>Worth: 9</li>
+													<li>Food: {{review.rating.food}}</li>
+													<li>Service: {{review.rating.service}}</li>
+													<li>Recommend: {{review.rating.recommend}}</li>
+													<li>Clean: {{review.rating.clean}}</li>
 												</ul>
 
 												<ul class="review-useful clearfix">
@@ -274,14 +276,14 @@
 
 									</li>
                   {{/each}}
-                  {{else}}
-                  <li>
+                  {{!else}}
+                  <!-- <li>
                       <div class="alert alert-danger">
                           No information yet
                       </div>
-                  </li>
+                  </li> -->
 
-                  {{/if}}
+                  {{!/if}}
 								</ul>
 
 							</div>
@@ -300,10 +302,10 @@
 								<h3><span>Leave your review</span></h3>
 							</div>
 
-							<form class="clearfix review-form-inner" method="post" action="/restaurants">
+							<form class="clearfix review-form-inner" method="post" action="/restaurants/review">
 
 								<div class="row gap-20">
-
+                  <input type="hidden" name="restaurant" class="form-control" value="{{restaurant._id}}" />
 									<!-- <div class="col-xs-12 col-sm-6 col-md-6">
 
 										<div class="form-group">
@@ -330,11 +332,12 @@
 
 										<div class="form-group">
 
-											<label>Content: </label>
+											<label>Food: </label>
 
 											<div class="rating-wrapper">
 												<div class="rating-item">
-													<span style="cursor: default;"><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: visible;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: 50%;"><span class="oi oi-star"></span></div></div></span><input type="hidden" class="rating-label" data-filled="oi oi-star" data-empty="oi oi-star" data-fractions="2" value="4.5"><span class="label label-default">4.5</span>
+
+                          <input type="hidden" class="rating-label" data-filled="oi oi-star" name="food" data-empty="oi oi-star" data-fractions="2" value="0">
 												</div>
 											</div>
 
@@ -346,11 +349,12 @@
 
 										<div class="form-group">
 
-											<label>Knowledge: </label>
+											<label>Recommend: </label>
 
 											<div class="rating-wrapper">
 												<div class="rating-item">
-													<span style="cursor: default;"><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div></span><input type="hidden" class="rating-label" data-filled="oi oi-star" data-empty="oi oi-star" data-fractions="2" value="5"><span class="label label-default">5</span>
+
+                          <input type="hidden" class="rating-label" data-filled="oi oi-star" name="recommend" data-empty="oi oi-star" data-fractions="2" value="0">
 												</div>
 											</div>
 
@@ -362,11 +366,12 @@
 
 										<div class="form-group">
 
-											<label>Assignment: </label>
+											<label>Service: </label>
 
 											<div class="rating-wrapper">
 												<div class="rating-item">
-													<span style="cursor: default;"><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div></span><input type="hidden" class="rating-label" data-filled="oi oi-star" data-empty="oi oi-star" data-fractions="2" value="5"><span class="label label-default">5</span>
+
+                          <input type="hidden" class="rating-label" data-filled="oi oi-star" name="service" data-empty="oi oi-star" data-fractions="2" value="0">
 												</div>
 											</div>
 
@@ -378,11 +383,11 @@
 
 										<div class="form-group">
 
-											<label>Classroom: </label>
+											<label>Clean: </label>
 
 											<div class="rating-wrapper">
 												<div class="rating-item">
-													<span style="cursor: default;"><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div></span><input type="hidden" class="rating-label" data-filled="oi oi-star" data-empty="oi oi-star" data-fractions="2" value="5"><span class="label label-default">5</span>
+                          <input type="hidden" class="rating-label" data-filled="oi oi-star" name="clean" data-empty="oi oi-star" data-fractions="2" value="0">
 												</div>
 											</div>
 
@@ -390,24 +395,21 @@
 
 									</div>
 
-									<div>
+								<!--	<div>
 
-										<div class="form-group">
+										 <div class="form-group">
 
 											<label>Instructor: </label>
 
 											<div class="rating-wrapper">
 												<div class="rating-item">
-													<span style="cursor: default;"><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;">
-                            <div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;">
-                              <span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background oi oi-star" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="oi oi-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;">
-                                <div class="rating-symbol-background oi oi-star" style="visibility: visible;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: 50%;"><span class="oi oi-star"></span></div></div></span><input type="hidden" class="rating-label" data-filled="oi oi-star" data-empty="oi oi-star" data-fractions="2" value="4.5"><span class="label label-default">4.5</span>
+                                <input type="hidden" class="rating-label" data-filled="oi oi-star" data-empty="oi oi-star" data-fractions="2" value="4.5">
 												</div>
 											</div>
 
 										</div>
 
-									</div>
+									</div> -->
 
 								</div>
 
@@ -417,7 +419,7 @@
 
 										<div class="form-group">
 											<label>Your Message: </label>
-											<textarea class="form-control form-control-sm" rows="5"></textarea>
+											<textarea name="review" class="form-control form-control-sm" rows="5"></textarea>
 										</div>
 									</div>
 
@@ -425,7 +427,7 @@
 
 									<div class="col-xs-12 col-sm-12 col-md-12">
                     {{#if currentUser }}
-										    <button class="btn btn-primary btn-sm mt-5">Submit</button>
+										    <input class="btn btn-primary btn-sm mt-5" name="Submit" type="submit" />
                     {{else}}
                         <a href="/auth/facebook/callback" class="btn btn-facebook btn-block">sign-in with Facebook</a>
                     {{/if}}

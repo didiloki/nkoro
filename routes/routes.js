@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const cloudinary = require('cloudinary')
 // var moment = require('moment')
 // const passport = require('passport');
 const passport = require('../config/passportconfig')
@@ -10,11 +11,11 @@ const Review = require('../models/review')
 const User = require('../models/user')
 
 router.get('/', (req, res) => {
-  var ip = req.header('x-forwarded-for') || req.connection.remoteAddress
-  var new_ip = req.connection.remoteAddress
-  // console.log(moment().format('YYYY'));
-  // console.log(ip);
-  // console.log(new_ip);
+  // var ip = req.header('x-forwarded-for') || req.connection.remoteAddress
+  // var new_ip = req.connection.remoteAddress
+  // // console.log(moment().format('YYYY'));
+  // // console.log(ip);
+  // // console.log(new_ip);
   res.render("index")
 })
 
@@ -25,9 +26,60 @@ router.get('/auth/login', (req, res) => {
 router.get('/how-it-works', (req, res) => {
   res.render("how-it-works")
 })
+/*Reviews*/
+router.post('/restaurants/review', isLoggedIn, (req, res) =>{
+
+  //get user reviews
+  let user_review = req.body.review
+  let which_restaurant = req.body.restaurant
+
+  let user_food = req.body.food
+  let user_service = req.body.service
+  let user_recommend = req.body.recommend
+  let user_clean = req.body.clean
+
+  console.log(which_restaurant);
+
+  let review = new Review({
+    description : user_review,
+    user : req.user._id,
+    rating:{
+        food : user_food,
+        service : user_service,
+        recommend : user_recommend,
+        clean : user_clean
+      }
+  })
+  console.log("review",review)
+  review.save((err)=>{
+    if(err) console.log(err);
+
+      Restaurant.findByIdAndUpdate(which_restaurant,{$push:{reviews: review._id}}, function(error, result){
+        if(error){
+            console.log(err);
+        }
+        console.log("RESULT: " + result);
+        res.redirect('/restaurants/show/'+which_restaurant)
+    });
+  })
+
+})
 
 /* restaurants */
 router.get('/restaurants', (req, res) =>{
+  // min=800&max=2000&ratingmin=2&ratingmax=4
+  let min_amount = req.query.min
+  let max_amount = req.query.max
+  let rating_min = req.query.ratingmin
+  let rating_max = req.query.ratingmax
+
+  let perPage = 1
+  let page = req.query.page || 1
+
+  console.log('min_amount: ' + min_amount)
+  console.log('max_amount:' + max_amount)
+  console.log('rating_min:' + rating_min)
+  console.log('rating_max:' + rating_max)
         // get all the restaurants
       Restaurant.find({})
       .populate({ //deep population
@@ -39,15 +91,22 @@ router.get('/restaurants', (req, res) =>{
           }
         })
       .populate('tags')
+      .skip((perPage * page) - perPage)
+      .limit(perPage)
       .exec(function(err, restaurants) {
-        if (err) throw err;
-        // res.send(restaurants)
-        res.render('restaurant/index', { restaurants :restaurants})
-      });
+        Restaurant.count().exec((err, count)=>{
+          if (err) throw err;
+          res.render('restaurant/index', { restaurants :restaurants, current: page, pages: Math.ceil(count/perPage)})
+        })
 
+        //res.render('restaurant/index', { restaurants :restaurants})
+      });
 });
 
-router.post('/restaurants', (req, res) =>{
+router.get("/restaurants/new", (req, res)=>{
+  res.render('restaurant/new')
+})
+router.post('/restaurants/create', (req, res) =>{
         res.send('restaurant/index')
 });
 
