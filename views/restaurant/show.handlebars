@@ -96,7 +96,7 @@
 														<div class="progress-radial-inner">
 															<div class="caption">
 
-																<p class="number">8.0</p>
+																<p class="number">{{average}}</p>
 
 															</div>
 														</div>
@@ -106,7 +106,7 @@
 												<div class="texting">
 
 													<h6>Very good</h6>
-													<a href="#">(based on 10575 reviews)</a>
+													<a href="#">(based on {{restaurant.reviews.length}} reviews)</a>
 
 												</div>
 
@@ -221,7 +221,7 @@
 											</div>
 
 											<h6>{{ review.user.firstname }} {{ review.user.lastname }}</h6>
-											<p>from Malaysia</p>
+											<p>from {{ review.user.city }}</p>
 
 										</div>
 
@@ -238,7 +238,7 @@
 														<div class="progress-radial-inner">
 															<div class="caption">
 
-																<p class="number">8.0</p>
+																<p class="number">{{ review.rating.total}}</p>
 
 															</div>
 														</div>
@@ -262,12 +262,12 @@
 													<li>Clean: {{review.rating.clean}}</li>
 												</ul>
 
-												<ul class="review-useful clearfix">
+												<!-- <ul class="review-useful clearfix">
 													<li><span>Was this review helpful? </span></li>
 													<li class="the-label rated"><a href="#"><i class="fa fa-thumbs-up"></i></a> 2</li>
 													<li class="the-label"><a href="#"><i class="fa fa-thumbs-down"></i></a> 0</li>
 													<li class="for-report"><a href="#"><i class="fa fa-flag"></i></a></li>
-												</ul>
+												</ul> -->
 
 
 											</div>

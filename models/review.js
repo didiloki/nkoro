@@ -8,10 +8,11 @@ const reviewSchema = new Schema({
       ref  : 'User'
     },
     rating:{
-      food : Number,
-      service : Number,
-      recommend : Number,
-      clean : Number
+      food : { type : Number, default : 0},
+      service : { type : Number, default : 0},
+      recommend : { type : Number, default : 0},
+      clean : { type : Number, default : 0},
+      total : { type : Number, default : 0}
     },
     created_at :{
       type: Date,

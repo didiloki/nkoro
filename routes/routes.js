@@ -10,6 +10,8 @@ const Tag = require('../models/tag');
 const Review = require('../models/review')
 const User = require('../models/user')
 
+const RestaurantController = require('../controller/RestaurantController');
+
 router.get('/', (req, res) => {
   // var ip = req.header('x-forwarded-for') || req.connection.remoteAddress
   // var new_ip = req.connection.remoteAddress
@@ -33,12 +35,13 @@ router.post('/restaurants/review', isLoggedIn, (req, res) =>{
   let user_review = req.body.review
   let which_restaurant = req.body.restaurant
 
-  let user_food = req.body.food
-  let user_service = req.body.service
-  let user_recommend = req.body.recommend
-  let user_clean = req.body.clean
+  let user_food = parseInt(req.body.food)
+  let user_service = parseInt(req.body.service)
+  let user_recommend = parseInt(req.body.recommend)
+  let user_clean = parseInt(req.body.clean)
 
-  console.log(which_restaurant);
+  // console.log(which_restaurant);
+  let mean = (user_food + user_service + user_recommend + user_clean)/ 4
 
   let review = new Review({
     description : user_review,
@@ -47,18 +50,26 @@ router.post('/restaurants/review', isLoggedIn, (req, res) =>{
         food : user_food,
         service : user_service,
         recommend : user_recommend,
-        clean : user_clean
+        clean : user_clean,
+        total : mean
       }
   })
+
   console.log("review",review)
+
+  let new_res = {
+      $set:{final_rating : 2},
+      $push:{reviews: review._id}
+  }
+
   review.save((err)=>{
     if(err) console.log(err);
 
-      Restaurant.findByIdAndUpdate(which_restaurant,{$push:{reviews: review._id}}, function(error, result){
+      Restaurant.findByIdAndUpdate(which_restaurant, new_res, function(error, result){
         if(error){
             console.log(err);
         }
-        console.log("RESULT: " + result);
+        console.log(result)
         res.redirect('/restaurants/show/'+which_restaurant)
     });
   })
@@ -66,54 +77,15 @@ router.post('/restaurants/review', isLoggedIn, (req, res) =>{
 })
 
 /* restaurants */
-router.get('/restaurants', (req, res) =>{
+router.get('/restaurant/filter', (req, res) =>{
   // min=800&max=2000&ratingmin=2&ratingmax=4
   let min_amount = req.query.min
   let max_amount = req.query.max
   let rating_min = req.query.ratingmin
   let rating_max = req.query.ratingmax
 
-  let perPage = 1
-  let page = req.query.page || 1
-
-  console.log('min_amount: ' + min_amount)
-  console.log('max_amount:' + max_amount)
-  console.log('rating_min:' + rating_min)
-  console.log('rating_max:' + rating_max)
-        // get all the restaurants
-      Restaurant.find({})
-      .populate({ //deep population
-          path: 'reviews',
-          model: 'Review',
-          populate: {
-            path: 'user',
-            model: 'User'
-          }
-        })
-      .populate('tags')
-      .skip((perPage * page) - perPage)
-      .limit(perPage)
-      .exec(function(err, restaurants) {
-        Restaurant.count().exec((err, count)=>{
-          if (err) throw err;
-          res.render('restaurant/index', { restaurants :restaurants, current: page, pages: Math.ceil(count/perPage)})
-        })
-
-        //res.render('restaurant/index', { restaurants :restaurants})
-      });
-});
-
-router.get("/restaurants/new", (req, res)=>{
-  res.render('restaurant/new')
-})
-router.post('/restaurants/create', (req, res) =>{
-        res.send('restaurant/index')
-});
-
-router.get('/restaurants/show/:id', (req, res) =>{
-
-  Restaurant.findById(req.params.id)
-  .populate('tags')
+  Restaurant.find({})
+  // .where()
   .populate({ //deep population
       path: 'reviews',
       model: 'Review',
@@ -122,25 +94,32 @@ router.get('/restaurants/show/:id', (req, res) =>{
         model: 'User'
       }
     })
-  .exec(function(err, restaurant) {
-    if (err) throw err;
-    console.log(req.params.id);
-    // res.send(restaurant)
-    res.render('restaurant/show', { restaurant :restaurant})
-  });
+  .populate('tags')
+  .exec(function(err, restaurants) {
+    Restaurant.count().exec((err, count)=>{
+      if (err) throw err;
 
-})
-
-router.get('/search/', (req, res) => {
-    console.log(req.query.search)
-  let data = req.query.search
-    Restaurant.find({'name' : new RegExp(data, 'i')}).exec((err, restaurants)=>{
-        if (err) throw err;
-
-            res.render('restaurant/search',{restaurants : restaurants})
+      res.json(restaurants)
+      // res.render('restaurant/index', { restaurants :restaurants, current: page, pages: Math.ceil(count/perPage)})
     })
 
+    //res.render('restaurant/index', { restaurants :restaurants})
+  });
+
+
 })
+
+router.get('/restaurants', RestaurantController.index);
+
+router.get("/restaurants/new", (req, res)=>{
+  res.render('restaurant/new')
+})
+router.post('/restaurants/create', (req, res) =>{
+    res.send('restaurant/index')
+});
+
+router.get('/restaurants/show/:id', RestaurantController.show)
+router.get('/search/', RestaurantController.search)
 
 router.get('/profile', isLoggedIn, function(req, res) {
       console.log(req.user)

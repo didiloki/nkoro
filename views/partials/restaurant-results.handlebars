@@ -42,7 +42,11 @@
 
 									<div class="GridLex-col-3_sm-3_xss-12">
 										<div class="image">
-											<img src="images/restaurant/01.jpg" alt="Image">
+                      {{#if r.image}}
+											    <img src="images/restaurant/01.jpg" alt="Image">
+                      {{else}}
+                          <img src="/images/logo-placeholder.png" alt="Image">
+                      {{/if}}
 										</div>
 									</div>
 
@@ -54,12 +58,12 @@
 
 												<div class="content">
 													<h5><a href="/restaurants/show/{{r._id}}">{{r.name}}</a></h5>
-                          {{#iff r.fullAddress '==' 'undefined'}}
-                            no address
+                          {{#iff r.fullAddress '==' 'undefined, undefined, undefined'}}
+                            No Address Yet, Check Map for Location
                           {{else}}
   													<p class="location"><i class="fa fa-map-marker"></i> {{r.fullAddress}}</p>
                           {{/iff}}
-													<p class="short-info">Barton waited twenty always repair in within we do. An delighted offending curiosity my is dashwoods at...</p>
+													<p class="short-info">{{r.description}}</p>
 													<!-- <p class="text-primary offer">-30% off the "à la carte" menu! * </p> -->
 													<p class="cuisine">Cuisine:
                             {{#each r.tags as |t|}}
@@ -111,13 +115,13 @@
 										<ul class="pagination pagination-text-center-sm mb-5-xs">
                       {{#iff current "==" 1}}
 											<li>
-												<a href="/restaurants/1" aria-label="Previous">
+												<a href="/restaurants/?page=1" aria-label="Previous">
 													<span aria-hidden="true">«</span>
 												</a>
 											</li>
                       {{else}}
                       <li>
-												<a href="/restaurants/1" aria-label="Previous">
+												<a href="/restaurants/?page=1" class="disabled" aria-label="Previous">
 													<span aria-hidden="true">«</span>
 												</a>
 											</li>
@@ -135,36 +139,6 @@
 											</li>
 										</ul>
 									</nav>
-                  {{/iff}}
-
-                  {{#iff pages '>' 0 }}
-                  <ul class="pagination text-center">
-                     {{#iff current '==' 1 }}
-                        <li class="disabled"><a>First</a></li>
-                    {{else}}
-                        <li><a href="/restaurants/?page=1">First</a></li>
-                    {{/iff}}
-                    <script>
-                    var i = (Number(current) > 5 ? Number(current) - 4 : 1) </script>
-                    {{#iff i '!==' 1 }}
-                        <li class="disabled"><a>...</a></li>
-                    {{/iff}}
-                    <!--  for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
-                        <% if (i == current) { %>
-                            <li class="active"><a><%= i %></a></li>
-                        <% } else { %>
-                            <li><a href="/products/<%= i %>"><%= i %></a></li>
-                        <% } %>
-                        <% if (i == Number(current) + 4 && i < pages) { %>
-                            <li class="disabled"><a>...</a></li>
-                        <% } %>
-                    <% } %> -->
-                    {{#iff current '==' pages}}
-                        <li class="disabled"><a>Last</a></li>
-                    {{else}}
-                        <li><a href="/restaurants/?page={{pages}}">Last</a></li>
-                    {{/iff}}
-                  </ul>
                   {{/iff}}
 
 								</div>

@@ -4,8 +4,36 @@
   */
   $(document).ready(function(){
 
+    $('.filter_search').on('click', function(){
+        // min=800&max=2000&ratingmin=2&ratingmax=4
+        let price = $('#price_range').val().split(";")
+        let min = price[0]
+        let max = price[1]
 
-    $.ajax({
-      
+        let rating = $('#star_rating_range').val().split(";")
+        let ratingmin = rating[0]
+        let ratingmax = rating[1]
+
+        console.log()
+        console.log($('#star_rating_range').val())
+        console.log($('#price_range').val().split(";"));
+
+      $.ajax({
+            type: "GET",
+            url: "/restaurant/filter",
+            data: { "min": min, "max": max },
+            error: function(){
+                  alert("Error");
+            },
+            success: function(data){
+                console.log(data)
+                let html = ''
+                $('.restaurant-list-item-wrapper').empty()
+                $('.restaurant-list-item-wrapper').append(data)
+                  // $("#result").empty();
+                  // $("#result").append(data);
+
+            }
+          });
     })
   })
