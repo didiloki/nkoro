@@ -13,7 +13,7 @@
 			</div>
 
 			<div class="container pt-10 pb-30">
-
+				<form method="post" action="/restaurants/new">
 				<div class="breadcrumb-wrapper">
 
 					<ol class="breadcrumb">
@@ -79,115 +79,8 @@
 										<div class="form-group bootstrap3-wysihtml5-wrapper">
 
 											<label>Restuarant information:</label>
-											<ul class="wysihtml5-toolbar" style=""><li class="dropdown">
-  <a class="btn btn-default dropdown-toggle " data-toggle="dropdown">
-
-      <span class="glyphicon glyphicon-font"></span>
-
-    <span class="current-font">Normal text</span>
-    <b class="caret"></b>
-  </a>
-  <ul class="dropdown-menu">
-    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="p" tabindex="-1" href="javascript:;" unselectable="on" class="">Normal text</a></li>
-    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1" tabindex="-1" href="javascript:;" unselectable="on" class="">Heading 1</a></li>
-    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h2" tabindex="-1" href="javascript:;" unselectable="on" class="">Heading 2</a></li>
-    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h3" tabindex="-1" href="javascript:;" unselectable="on" class="">Heading 3</a></li>
-    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h4" tabindex="-1" href="javascript:;" unselectable="on" class="">Heading 4</a></li>
-    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h5" tabindex="-1" href="javascript:;" unselectable="on" class="">Heading 5</a></li>
-    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h6" tabindex="-1" href="javascript:;" unselectable="on" class="">Heading 6</a></li>
-  </ul>
-</li>
-<li>
-  <div class="btn-group">
-    <a class="btn btn-default wysihtml5-command-active" data-wysihtml5-command="bold" title="CTRL+B" tabindex="-1" href="javascript:;" unselectable="on">Bold</a>
-    <a class="btn btn-default" data-wysihtml5-command="italic" title="CTRL+I" tabindex="-1" href="javascript:;" unselectable="on">Italic</a>
-    <a class="btn btn-default" data-wysihtml5-command="underline" title="CTRL+U" tabindex="-1" href="javascript:;" unselectable="on">Underline</a>
-
-    <a class="btn btn-default" data-wysihtml5-command="small" title="CTRL+S" tabindex="-1" href="javascript:;" unselectable="on">Small</a>
-
-  </div>
-</li>
-<li>
-  <a class="btn btn-default" data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="blockquote" data-wysihtml5-display-format-name="false" tabindex="-1" href="javascript:;" unselectable="on">
-
-      <span class="glyphicon glyphicon-quote"></span>
-
-  </a>
-</li>
-<li>
-  <div class="btn-group">
-    <a class="btn btn-default" data-wysihtml5-command="insertUnorderedList" title="Unordered list" tabindex="-1" href="javascript:;" unselectable="on">
-
-      <span class="glyphicon glyphicon-list"></span>
-
-    </a>
-    <a class="btn btn-default" data-wysihtml5-command="insertOrderedList" title="Ordered list" tabindex="-1" href="javascript:;" unselectable="on">
-
-      <span class="glyphicon glyphicon-th-list"></span>
-
-    </a>
-    <a class="btn btn-default" data-wysihtml5-command="Outdent" title="Outdent" tabindex="-1" href="javascript:;" unselectable="on">
-
-      <span class="glyphicon glyphicon-indent-right"></span>
-
-    </a>
-    <a class="btn btn-default" data-wysihtml5-command="Indent" title="Indent" tabindex="-1" href="javascript:;" unselectable="on">
-
-      <span class="glyphicon glyphicon-indent-left"></span>
-
-    </a>
-  </div>
-</li>
-<li>
-  <div class="bootstrap-wysihtml5-insert-link-modal modal fade">
-    <div class="modal-dialog ">
-      <div class="modal-content">
-        <div class="modal-header">
-          <a class="close" data-dismiss="modal">×</a>
-          <h3>Insert link</h3>
-        </div>
-        <div class="modal-body">
-          <input value="http://" class="bootstrap-wysihtml5-insert-link-url form-control">
-          <label class="checkbox"> <input type="checkbox" class="bootstrap-wysihtml5-insert-link-target" checked="">Open link in new window</label>
-        </div>
-        <div class="modal-footer">
-          <a class="btn btn-default" data-dismiss="modal">Cancel</a>
-          <a href="#" class="btn btn-primary" data-dismiss="modal">Insert link</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <a class="btn btn-default" data-wysihtml5-command="createLink" title="Insert link" tabindex="-1" href="javascript:;" unselectable="on">
-
-      <span class="glyphicon glyphicon-share"></span>
-
-  </a>
-</li>
-<li>
-  <div class="bootstrap-wysihtml5-insert-image-modal modal fade">
-    <div class="modal-dialog ">
-      <div class="modal-content">
-        <div class="modal-header">
-          <a class="close" data-dismiss="modal">×</a>
-          <h3>Insert image</h3>
-        </div>
-        <div class="modal-body">
-          <input value="http://" class="bootstrap-wysihtml5-insert-image-url form-control">
-        </div>
-        <div class="modal-footer">
-          <a class="btn btn-default" data-dismiss="modal">Cancel</a>
-          <a class="btn btn-primary" data-dismiss="modal">Insert image</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <a class="btn btn-default" data-wysihtml5-command="insertImage" title="Insert image" tabindex="-1" href="javascript:;" unselectable="on">
-
-      <span class="glyphicon glyphicon-picture"></span>
-
-  </a>
-</li>
-</ul><textarea class="bootstrap3-wysihtml5 form-control" style="height: 200px; display: none;" placeholder="Enter text ..."></textarea><iframe class="wysihtml5-sandbox" security="restricted" allowtransparency="true" frameborder="0" width="0" height="0" marginwidth="0" marginheight="0" style="display: block; background-color: rgb(255, 255, 255); border-collapse: separate; border: 1px solid rgb(235, 235, 235); clear: none; float: none; margin: 0px; outline: rgb(85, 85, 85) none 0px; outline-offset: 0px; padding: 6px 12px; position: static; top: auto; left: auto; right: auto; bottom: auto; z-index: auto; vertical-align: baseline; text-align: start; box-sizing: border-box; -webkit-box-shadow: none; box-shadow: none; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; border-top-left-radius: 0px; width: 100%; height: 200px;"></iframe>
+hre
+<textarea class="bootstrap3-wysihtml5 form-control" style="height: 200px;" placeholder="Enter text ...">here</textarea>
 
 										</div>
 
@@ -292,9 +185,7 @@
 
 								<h6 class="text-primary text-uppercase mt-15">Map</h6>
 
-								<!-- <div id="map-simple" class="map-submit mb-40" style="position: relative; overflow: hidden;"><div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);"><div class="gm-style" style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px;"><div tabindex="0" style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; cursor: url(http://maps.gstatic.com/mapfiles/openhand_8_8.cur) 8 8, default;"><div style="z-index: 1; position: absolute; top: 0px; left: 0px; width: 100%; transform-origin: 0px 0px; transform: matrix(1, 0, 0, 1, 0, 0);"><div style="position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"><div style="width: 256px; height: 256px; position: absolute; left: 146px; top: -3px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 146px; top: 253px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 402px; top: -3px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 402px; top: 253px;"></div><div style="width: 256px; height: 256px; position: absolute; left: -110px; top: -3px;"></div><div style="width: 256px; height: 256px; position: absolute; left: -110px; top: 253px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 658px; top: -3px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 658px; top: 253px;"></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;"></div><div style="position: absolute; z-index: 0; left: 0px; top: 0px;"><div style="overflow: hidden;"></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"><div style="position: absolute; left: 402px; top: -3px; transition: opacity 200ms ease-out;"><img draggable="false" alt="" src="http://maps.google.com/maps/vt?pb=!1m5!1m4!1i14!2i8187!3i5445!4i256!2m3!1e0!2sm!3i405103441!3m14!2sen-GB!3sUS!5e18!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjN8cy5lOmx8cC52OnNpbXBsaWZpZWR8cC5sOjIwLHMudDoyMXxwLnY6b2ZmLHMudDo4MXxwLnY6b24scy50OjR8cC5zOi0xMDB8cC52Om9ufHAubDoxMCxzLnQ6NTF8cC52Om9uLHMudDo1MXxwLnY6b24scy50OjQ5fHMuZTpsfHAudjpzaW1wbGlmaWVkLHMudDoyfHMuZTpsfHAudjpvZmYscy50OjUwfHMuZTpsfHAudjpvbnxwLmw6NTAscy50OjZ8cC5oOiNhMWNkZmN8cC5zOjMwfHAubDo0OSxzLnQ6NDl8cy5lOmd8cC5oOiNmNDk5MzUscy50OjUwfHMuZTpnfHAuaDojZmFkOTU5LHMudDo0OXxwLmg6I2RkZGJkN3xwLnM6LTkyfHAubDo2MHxwLnY6b24scy50OjgyfHAuaDojYzhjNmMzfHAuczotNzF8cC5sOi0xOHxwLnY6b24scy50OjJ8cC5oOiNkOWQ1Y2R8cC5zOi03MHxwLmw6MjB8cC52Om9u!4e0!5m1!5f2&amp;token=51304" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 146px; top: -3px; transition: opacity 200ms ease-out;"><img draggable="false" alt="" src="http://maps.google.com/maps/vt?pb=!1m5!1m4!1i14!2i8186!3i5445!4i256!2m3!1e0!2sm!3i405103441!3m14!2sen-GB!3sUS!5e18!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjN8cy5lOmx8cC52OnNpbXBsaWZpZWR8cC5sOjIwLHMudDoyMXxwLnY6b2ZmLHMudDo4MXxwLnY6b24scy50OjR8cC5zOi0xMDB8cC52Om9ufHAubDoxMCxzLnQ6NTF8cC52Om9uLHMudDo1MXxwLnY6b24scy50OjQ5fHMuZTpsfHAudjpzaW1wbGlmaWVkLHMudDoyfHMuZTpsfHAudjpvZmYscy50OjUwfHMuZTpsfHAudjpvbnxwLmw6NTAscy50OjZ8cC5oOiNhMWNkZmN8cC5zOjMwfHAubDo0OSxzLnQ6NDl8cy5lOmd8cC5oOiNmNDk5MzUscy50OjUwfHMuZTpnfHAuaDojZmFkOTU5LHMudDo0OXxwLmg6I2RkZGJkN3xwLnM6LTkyfHAubDo2MHxwLnY6b24scy50OjgyfHAuaDojYzhjNmMzfHAuczotNzF8cC5sOi0xOHxwLnY6b24scy50OjJ8cC5oOiNkOWQ1Y2R8cC5zOi03MHxwLmw6MjB8cC52Om9u!4e0!5m1!5f2&amp;token=111824" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: -110px; top: -3px; transition: opacity 200ms ease-out;"><img draggable="false" alt="" src="http://maps.google.com/maps/vt?pb=!1m5!1m4!1i14!2i8185!3i5445!4i256!2m3!1e0!2sm!3i405103441!3m14!2sen-GB!3sUS!5e18!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjN8cy5lOmx8cC52OnNpbXBsaWZpZWR8cC5sOjIwLHMudDoyMXxwLnY6b2ZmLHMudDo4MXxwLnY6b24scy50OjR8cC5zOi0xMDB8cC52Om9ufHAubDoxMCxzLnQ6NTF8cC52Om9uLHMudDo1MXxwLnY6b24scy50OjQ5fHMuZTpsfHAudjpzaW1wbGlmaWVkLHMudDoyfHMuZTpsfHAudjpvZmYscy50OjUwfHMuZTpsfHAudjpvbnxwLmw6NTAscy50OjZ8cC5oOiNhMWNkZmN8cC5zOjMwfHAubDo0OSxzLnQ6NDl8cy5lOmd8cC5oOiNmNDk5MzUscy50OjUwfHMuZTpnfHAuaDojZmFkOTU5LHMudDo0OXxwLmg6I2RkZGJkN3xwLnM6LTkyfHAubDo2MHxwLnY6b24scy50OjgyfHAuaDojYzhjNmMzfHAuczotNzF8cC5sOi0xOHxwLnY6b24scy50OjJ8cC5oOiNkOWQ1Y2R8cC5zOi03MHxwLmw6MjB8cC52Om9u!4e0!5m1!5f2&amp;token=41273" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 402px; top: 253px; transition: opacity 200ms ease-out;"><img draggable="false" alt="" src="http://maps.google.com/maps/vt?pb=!1m5!1m4!1i14!2i8187!3i5446!4i256!2m3!1e0!2sm!3i405103453!3m14!2sen-GB!3sUS!5e18!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjN8cy5lOmx8cC52OnNpbXBsaWZpZWR8cC5sOjIwLHMudDoyMXxwLnY6b2ZmLHMudDo4MXxwLnY6b24scy50OjR8cC5zOi0xMDB8cC52Om9ufHAubDoxMCxzLnQ6NTF8cC52Om9uLHMudDo1MXxwLnY6b24scy50OjQ5fHMuZTpsfHAudjpzaW1wbGlmaWVkLHMudDoyfHMuZTpsfHAudjpvZmYscy50OjUwfHMuZTpsfHAudjpvbnxwLmw6NTAscy50OjZ8cC5oOiNhMWNkZmN8cC5zOjMwfHAubDo0OSxzLnQ6NDl8cy5lOmd8cC5oOiNmNDk5MzUscy50OjUwfHMuZTpnfHAuaDojZmFkOTU5LHMudDo0OXxwLmg6I2RkZGJkN3xwLnM6LTkyfHAubDo2MHxwLnY6b24scy50OjgyfHAuaDojYzhjNmMzfHAuczotNzF8cC5sOi0xOHxwLnY6b24scy50OjJ8cC5oOiNkOWQ1Y2R8cC5zOi03MHxwLmw6MjB8cC52Om9u!4e0!5m1!5f2&amp;token=44206" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: -110px; top: 253px; transition: opacity 200ms ease-out;"><img draggable="false" alt="" src="http://maps.google.com/maps/vt?pb=!1m5!1m4!1i14!2i8185!3i5446!4i256!2m3!1e0!2sm!3i405103465!3m14!2sen-GB!3sUS!5e18!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjN8cy5lOmx8cC52OnNpbXBsaWZpZWR8cC5sOjIwLHMudDoyMXxwLnY6b2ZmLHMudDo4MXxwLnY6b24scy50OjR8cC5zOi0xMDB8cC52Om9ufHAubDoxMCxzLnQ6NTF8cC52Om9uLHMudDo1MXxwLnY6b24scy50OjQ5fHMuZTpsfHAudjpzaW1wbGlmaWVkLHMudDoyfHMuZTpsfHAudjpvZmYscy50OjUwfHMuZTpsfHAudjpvbnxwLmw6NTAscy50OjZ8cC5oOiNhMWNkZmN8cC5zOjMwfHAubDo0OSxzLnQ6NDl8cy5lOmd8cC5oOiNmNDk5MzUscy50OjUwfHMuZTpnfHAuaDojZmFkOTU5LHMudDo0OXxwLmg6I2RkZGJkN3xwLnM6LTkyfHAubDo2MHxwLnY6b24scy50OjgyfHAuaDojYzhjNmMzfHAuczotNzF8cC5sOi0xOHxwLnY6b24scy50OjJ8cC5oOiNkOWQ1Y2R8cC5zOi03MHxwLmw6MjB8cC52Om9u!4e0!5m1!5f2&amp;token=109918" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 658px; top: -3px; transition: opacity 200ms ease-out;"><img draggable="false" alt="" src="http://maps.google.com/maps/vt?pb=!1m5!1m4!1i14!2i8188!3i5445!4i256!2m3!1e0!2sm!3i405103441!3m14!2sen-GB!3sUS!5e18!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjN8cy5lOmx8cC52OnNpbXBsaWZpZWR8cC5sOjIwLHMudDoyMXxwLnY6b2ZmLHMudDo4MXxwLnY6b24scy50OjR8cC5zOi0xMDB8cC52Om9ufHAubDoxMCxzLnQ6NTF8cC52Om9uLHMudDo1MXxwLnY6b24scy50OjQ5fHMuZTpsfHAudjpzaW1wbGlmaWVkLHMudDoyfHMuZTpsfHAudjpvZmYscy50OjUwfHMuZTpsfHAudjpvbnxwLmw6NTAscy50OjZ8cC5oOiNhMWNkZmN8cC5zOjMwfHAubDo0OSxzLnQ6NDl8cy5lOmd8cC5oOiNmNDk5MzUscy50OjUwfHMuZTpnfHAuaDojZmFkOTU5LHMudDo0OXxwLmg6I2RkZGJkN3xwLnM6LTkyfHAubDo2MHxwLnY6b24scy50OjgyfHAuaDojYzhjNmMzfHAuczotNzF8cC5sOi0xOHxwLnY6b24scy50OjJ8cC5oOiNkOWQ1Y2R8cC5zOi03MHxwLmw6MjB8cC52Om9u!4e0!5m1!5f2&amp;token=121855" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 658px; top: 253px; transition: opacity 200ms ease-out;"><img draggable="false" alt="" src="http://maps.google.com/maps/vt?pb=!1m5!1m4!1i14!2i8188!3i5446!4i256!2m3!1e0!2sm!3i405103453!3m14!2sen-GB!3sUS!5e18!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjN8cy5lOmx8cC52OnNpbXBsaWZpZWR8cC5sOjIwLHMudDoyMXxwLnY6b2ZmLHMudDo4MXxwLnY6b24scy50OjR8cC5zOi0xMDB8cC52Om9ufHAubDoxMCxzLnQ6NTF8cC52Om9uLHMudDo1MXxwLnY6b24scy50OjQ5fHMuZTpsfHAudjpzaW1wbGlmaWVkLHMudDoyfHMuZTpsfHAudjpvZmYscy50OjUwfHMuZTpsfHAudjpvbnxwLmw6NTAscy50OjZ8cC5oOiNhMWNkZmN8cC5zOjMwfHAubDo0OSxzLnQ6NDl8cy5lOmd8cC5oOiNmNDk5MzUscy50OjUwfHMuZTpnfHAuaDojZmFkOTU5LHMudDo0OXxwLmg6I2RkZGJkN3xwLnM6LTkyfHAubDo2MHxwLnY6b24scy50OjgyfHAuaDojYzhjNmMzfHAuczotNzF8cC5sOi0xOHxwLnY6b24scy50OjJ8cC5oOiNkOWQ1Y2R8cC5zOi03MHxwLmw6MjB8cC52Om9u!4e0!5m1!5f2&amp;token=114757" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 146px; top: 253px; transition: opacity 200ms ease-out;"><img draggable="false" alt="" src="http://maps.google.com/maps/vt?pb=!1m5!1m4!1i14!2i8186!3i5446!4i256!2m3!1e0!2sm!3i405103465!3m14!2sen-GB!3sUS!5e18!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjN8cy5lOmx8cC52OnNpbXBsaWZpZWR8cC5sOjIwLHMudDoyMXxwLnY6b2ZmLHMudDo4MXxwLnY6b24scy50OjR8cC5zOi0xMDB8cC52Om9ufHAubDoxMCxzLnQ6NTF8cC52Om9uLHMudDo1MXxwLnY6b24scy50OjQ5fHMuZTpsfHAudjpzaW1wbGlmaWVkLHMudDoyfHMuZTpsfHAudjpvZmYscy50OjUwfHMuZTpsfHAudjpvbnxwLmw6NTAscy50OjZ8cC5oOiNhMWNkZmN8cC5zOjMwfHAubDo0OSxzLnQ6NDl8cy5lOmd8cC5oOiNmNDk5MzUscy50OjUwfHMuZTpnfHAuaDojZmFkOTU5LHMudDo0OXxwLmg6I2RkZGJkN3xwLnM6LTkyfHAubDo2MHxwLnY6b24scy50OjgyfHAuaDojYzhjNmMzfHAuczotNzF8cC5sOi0xOHxwLnY6b24scy50OjJ8cC5oOiNkOWQ1Y2R8cC5zOi03MHxwLmw6MjB8cC52Om9u!4e0!5m1!5f2&amp;token=49398" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div></div></div><div class="gm-style-pbc" style="z-index: 2; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; transition-duration: 0ms; opacity: 0;"><p class="gm-style-pbt"></p></div><div style="z-index: 3; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px;"><div style="z-index: 1; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px;"></div></div><div style="z-index: 4; position: absolute; top: 0px; left: 0px; width: 100%; transform-origin: 0px 0px; transform: matrix(1, 0, 0, 1, 0, 0);"><div style="position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;"><div style="position: absolute; top: 140px; left: 492.00000000023283px; cursor: pointer;"><div><div class="marker-loaded"><div class="map-marker"><div class="icon"></div></div></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;"></div></div></div><div style="margin-left: 5px; margin-right: 5px; z-index: 1000000; position: absolute; left: 0px; bottom: 0px;"><a target="_blank" href="https://maps.google.com/maps?ll=51.541599,-0.112588&amp;z=14&amp;t=m&amp;hl=en-GB&amp;gl=US&amp;mapclient=apiv3" title="Click to see this area on Google Maps" style="position: static; overflow: visible; float: none; display: inline;"><div style="width: 66px; height: 26px; cursor: pointer;"><img alt="" src="http://maps.gstatic.com/mapfiles/api-3/images/google_white5_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 66px; height: 26px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;"></div></a></div><div style="background-color: white; padding: 15px 21px; border: 1px solid rgb(171, 171, 171); font-family: Roboto, Arial, sans-serif; color: rgb(34, 34, 34); -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 16px; box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 16px; z-index: 10000002; display: none; width: 256px; height: 148px; position: absolute; left: 221px; top: 60px;"><div style="padding: 0px 0px 10px; font-size: 16px;">Map Data</div><div style="font-size: 13px;">Map data ©2018 Google</div><div style="width: 13px; height: 13px; overflow: hidden; position: absolute; opacity: 0.7; right: 12px; top: 12px; z-index: 10000; cursor: pointer;"><img alt="" src="http://maps.gstatic.com/mapfiles/api-3/images/mapcnt6.png" draggable="false" style="position: absolute; left: -2px; top: -336px; width: 59px; height: 492px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div><div class="gmnoprint" style="z-index: 1000001; position: absolute; right: 167px; bottom: 0px; width: 122px;"><div draggable="false" class="gm-style-cc" style="-webkit-user-select: none; height: 14px; line-height: 14px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><a style="color: rgb(68, 68, 68); text-decoration: none; cursor: pointer; display: none;">Map Data</a><span style="">Map data ©2018 Google</span></div></div></div><div class="gmnoscreen" style="position: absolute; right: 0px; bottom: 0px;"><div style="font-family: Roboto, Arial, sans-serif; font-size: 11px; color: rgb(68, 68, 68); direction: ltr; text-align: right; background-color: rgb(245, 245, 245);">Map data ©2018 Google</div></div><div class="gmnoprint gm-style-cc" draggable="false" style="z-index: 1000001; -webkit-user-select: none; height: 14px; line-height: 14px; position: absolute; right: 96px; bottom: 0px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><a href="https://www.google.com/intl/en-GB_US/help/terms_maps.html" target="_blank" style="text-decoration: none; cursor: pointer; color: rgb(68, 68, 68);">Terms of Use</a></div></div><button draggable="false" title="Toggle fullscreen view" aria-label="Toggle fullscreen view" type="button" style="background-image: none; border: 0px; margin: 10px 14px; padding: 0px; position: absolute; cursor: pointer; -webkit-user-select: none; width: 25px; height: 25px; overflow: hidden; display: none; top: 0px; right: 0px; background-position: initial initial; background-repeat: initial initial;"><img alt="" src="http://maps.gstatic.com/mapfiles/api-3/images/sv9.png" draggable="false" class="gm-fullscreen-control" style="position: absolute; left: -52px; top: -86px; width: 164px; height: 175px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;"></button><div draggable="false" class="gm-style-cc" style="-webkit-user-select: none; height: 14px; line-height: 14px; position: absolute; right: 0px; bottom: 0px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><a target="_new" title="Report errors in the road map or imagery to Google" href="https://www.google.com/maps/@51.541599,-0.112588,14z/data=!10m1!1e1!12b1?source=apiv3&amp;rapsrc=apiv3" style="font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); text-decoration: none; position: relative;">Report a map error</a></div></div></div></div></div>
- -->
-
+								
 							</div>
 
 							<div class="row">
@@ -329,7 +220,7 @@
 									<label class="" for="term_accept-1">By checking this box you are agreeing to all Nkoros terms and conditions <a href="#" class="font700">Terms &amp; Conditions</a></label>
 								</div>
 
-								<a href="#" class="btn btn-primary mt-15">Submit</a>
+								<input type="submit" name="Submit" class="btn btn-primary mt-15">
 
 							</div>
 
@@ -340,5 +231,6 @@
 				</div>
 
 			</div>
+		</form>
 
 		</div>
