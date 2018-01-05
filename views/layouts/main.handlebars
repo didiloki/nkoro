@@ -70,7 +70,7 @@
 								<a href="/restaurants">Restaurant</a>
 							</li>
 							<li><a href="/how-it-works">How it works</a></li>
-							<li><a href="/restuarants/new">List Your Restaurant</a></li>
+							<li><a href="/restaurants/new">List Your Restaurant</a></li>
 
 						</ul>
 					</div><!--/.nav-collapse -->
@@ -123,6 +123,24 @@
 			<!-- end Navbar -->
 
 		</header>
+		{{#if alerts.error}}
+		      {{#each alerts.error as |msg|}}
+		      <div class="alert alert-danger alert-dismissable fade in">
+		          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		          <strong>Error!</strong> {{msg}}
+		      </div>
+
+		      {{/each}}
+		  {{/if}}
+
+		{{#if alerts.success}}
+		    {{#each alerts.success as |s|}}
+		        <div class="alert alert-success alert-dismissable fade in">
+		            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		            <strong>Success!</strong> {{s}}
+		        </div>
+		    {{/each}}
+		{{/if}}
 		<!-- end Header -->
 
 {{{body}}}

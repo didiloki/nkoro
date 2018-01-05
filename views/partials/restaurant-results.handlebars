@@ -43,7 +43,7 @@
 									<div class="GridLex-col-3_sm-3_xss-12">
 										<div class="image">
                       {{#if r.image}}
-											    <img src="images/restaurant/01.jpg" alt="Image">
+											    <img src="/uploads/{{r.image}}" alt="Image">
                       {{else}}
                           <img src="/images/logo-placeholder.png" alt="Image">
                       {{/if}}
@@ -63,7 +63,7 @@
                           {{else}}
   													<p class="location"><i class="fa fa-map-marker"></i> {{r.fullAddress}}</p>
                           {{/iff}}
-													<p class="short-info">{{r.description}}</p>
+													<p class="short-info">{{{r.description}}}</p>
 													<!-- <p class="text-primary offer">-30% off the "à la carte" menu! * </p> -->
 													<p class="cuisine">Cuisine:
                             {{#each r.tags as |t|}}
@@ -106,7 +106,7 @@
 
 							<div class="GridLex-grid-middle GridLex-grid-noGutter">
 								<div class="GridLex-col-6_sm-12_xs-12">
-									<div class="text-right text-center-sm mb-10-sm">Showing 1 to 24 from 253 restaurants</div>
+									<div class="text-right text-center-sm mb-10-sm">Showing 1 to 24 from {{ restaurants.length }} restaurants</div>
 								</div>
 								<div class="GridLex-col-6_sm-12_xs-12">
                   {{#iff pages ">" 0}}

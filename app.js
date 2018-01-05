@@ -10,14 +10,10 @@ const passport = require('passport')
 // const moment = require('moment')
 const MongoStore = require('connect-mongo')(session)
 const setup = require("./config/settings")
-const cloudinary = require('cloudinary')
+const multer = require('multer')
 
-cloudinary.config({
-  cloud_name: 'sample',
-  api_key: '874837483274837',
-  api_secret: 'a676b67565c6767a6767d6767f676fe1'
-})
 
+///------------App Start -----//
 const app = express()
 const PORT = process.env.PORT || 8000
 
@@ -27,6 +23,7 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').load();
 }
 
+//---Mongoose ----//
 mongoose.Promise = global.Promise
 mongoose.connect((setup.MONGODB_LIVE), { useMongoClient : true })
 .then(()=>{ console.log("-- Mongoose ok ---")}, (err) =>{ console.log(err) } )
@@ -84,29 +81,6 @@ app.use(session({
   store: new MongoStore({ url: setup.MONGODB_LIVE }),
 })); // session secret
 
-//Handlebars registerHelpers
-// exphbs.registerHelper('iff', function(a, operator, b, opts) {
-//     var bool = false;
-//     switch(operator) {
-//        case '==':
-//            bool = a == b;
-//            break;
-//        case '>':
-//            bool = a > b;
-//            break;
-//        case '<':
-//            bool = a < b;
-//            break;
-//        default:
-//            throw "Unknown operator " + operator;
-//     }
-//
-//     if (bool) {
-//         return opts.fn(this);
-//     } else {
-//         return opts.inverse(this);
-//     }
-// })
 //Passport ================
 app.use(passport.initialize());
 app.use(passport.session());
