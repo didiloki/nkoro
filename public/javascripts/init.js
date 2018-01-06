@@ -14,7 +14,7 @@
         let ratingmin = rating[0]
         let ratingmax = rating[1]
 
-        window.location.href = window.location.origin +'/restaurant/filter?min='+ min+ '&max=' + max + '&ratingmin=' + ratingmin + '&ratingmax='+ ratingmax
+        window.location.href = window.location.origin +'/restaurant/filter?min='+ min+ '&max=' + max + '&ratingmin=' + ratingmin + '&ratingmax='+ ratingmax + '&'
 
     })
   })
