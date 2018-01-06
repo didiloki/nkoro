@@ -15,7 +15,7 @@ const restaurantSchema = new Schema({
     name : String,
     description: String,
     image : String,
-    cusine : [{type : String}],
+    cuisine : [{type : String}],
     reviews : [reviewId],
     final_rating : Number,
     tags : [tagId],

@@ -99,6 +99,8 @@
 
 							</div>
               {{/each}}
+							{{else}}
+							Nothing found
               {{/if}}
 						</div>
 
@@ -106,7 +108,7 @@
 
 							<div class="GridLex-grid-middle GridLex-grid-noGutter">
 								<div class="GridLex-col-6_sm-12_xs-12">
-									<div class="text-right text-center-sm mb-10-sm">Showing 1 to 24 from {{ restaurants.length }} restaurants</div>
+									<div class="text-right text-center-sm mb-10-sm"> {{ restaurants.length }} restaurants</div>
 								</div>
 								<div class="GridLex-col-6_sm-12_xs-12">
                   {{#iff pages ">" 0}}

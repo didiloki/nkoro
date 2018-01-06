@@ -24,10 +24,9 @@
 						</div>
 
 						<div class="restaurant-grid-item bg-white">
-							<a href="restaurant-detail.html">
+							<!-- <a href="#"> -->
 								<div class="image">
-									<!-- <img src="/images/restaurant/02.jpg" alt="Image"> -->
-                  maps
+									<img src="/uploads/{{restaurant.image}}" alt="Image">
 								</div>
 								<div class="content">
 									<h5>{{restaurant.name}}</h5>
@@ -36,9 +35,9 @@
                       {{restaurant.location.country}}
                   </p>
 								</div>
-							</a>
+							<!-- </a> -->
 
-							<a href="restaurant-detail.html" class="btn btn-primary btn-sm btn-block mt-10"><i class="fa fa-arrow-left"></i> Back to detail</a>
+							<a href="" class="btn btn-primary btn-sm btn-block mt-10"><i class="fa fa-arrow-left"></i> Back to detail</a>
 
 						</div>
 
@@ -79,6 +78,45 @@
 
 					<div class="col-sm-8 col-md-9 mb-30">
 
+            <div id="map" style="height:250px"> </div>
+
+            <script>
+              var map, marker
+
+              function initMap() {
+                //9.05921071704827,7.499799728393555
+                var uluru = {lat: {{restaurant.location.latitude}}, lng: {{restaurant.location.longitude}} };
+                map = new google.maps.Map(document.getElementById('map'), {
+                  zoom: 14,
+                  center: uluru
+                });
+                marker = new google.maps.Marker({
+                  position: uluru,
+                  map: map
+                })
+
+                google.maps.event.addListener(map, "click", function (e) {
+                    //lat and lng is available in e object
+                    var latLng = e.latLng;
+                    console.log(latLng.lat() +"," + latLng.lng());
+
+                    // This event listener will call addMarker() when the map is clicked.
+                    if (!marker || !marker.setPosition) {
+                      marker = new google.maps.Marker({
+                        position: latLng,
+                        map: map
+                      })
+                      } else {
+                        marker.setPosition(latLng);
+                      }
+
+                });
+              }
+            </script>
+            <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGNfQNKn-rt2wR9z7szBibbcyayU2TtH0&callback=initMap">
+            </script>
+
 						<div class="review-wrapper">
 
 							<div class="review-header">
@@ -96,7 +134,7 @@
 														<div class="progress-radial-inner">
 															<div class="caption">
 
-																<p class="number">{{average}}</p>
+																<p class="number">{{data.average}}</p>
 
 															</div>
 														</div>
@@ -127,7 +165,7 @@
 																<div class="progress-radial-inner">
 																	<div class="caption">
 
-																		<p class="number">8.0</p>
+																		<p class="number">{{ data.food}}</p>
 
 																	</div>
 																</div>
@@ -144,7 +182,7 @@
 																<div class="progress-radial-inner">
 																	<div class="caption">
 
-																		<p class="number">8.0</p>
+																		<p class="number">{{ data.service}}</p>
 
 																	</div>
 																</div>
@@ -161,7 +199,7 @@
 																<div class="progress-radial-inner">
 																	<div class="caption">
 
-																		<p class="number">8.0</p>
+																		<p class="number">{{ data.recommend}}</p>
 
 																	</div>
 																</div>
@@ -178,13 +216,13 @@
 																<div class="progress-radial-inner">
 																	<div class="caption">
 
-																		<p class="number">8.0</p>
+																		<p class="number">{{data.clean}}</p>
 
 																	</div>
 																</div>
 															</div>
 														</div>
-														<p class="text-center">Worth to eat</p>
+														<p class="text-center">Cleaniness</p>
 
 													</li>
 

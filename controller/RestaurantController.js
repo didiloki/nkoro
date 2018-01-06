@@ -68,17 +68,55 @@ exports.show = (req, res) =>{
   .exec(function(err, restaurant) {
     if (err) throw err;
 
-    let sum = 0 //sum of all total review
-    let average = 0 //average
+    let sum_total = 0 //sum of all total review
+    let average = 0 //average total
+    let sum_total_food = 0
+    let sum_total_service = 0
+    let sum_total_recommend = 0
+    let sum_total_clean = 0
 
     for(var o = 0; o < restaurant.reviews.length; o++){
-      sum += parseInt(restaurant.reviews[o].rating.total)
+      sum_total += parseInt(restaurant.reviews[o].rating.total)
+      sum_total_food += parseInt(restaurant.reviews[o].rating.food)
+      sum_total_service += parseInt(restaurant.reviews[o].rating.service)
+      sum_total_recommend += parseInt(restaurant.reviews[o].rating.recommend)
+      sum_total_clean += parseInt(restaurant.reviews[o].rating.clean)
     }
 
-    average = sum / restaurant.reviews.length
+    average = sum_total / restaurant.reviews.length //calculate average total
+    average_food = sum_total_food / restaurant.reviews.length //calculate average total
+    average_service = sum_total_service / restaurant.reviews.length //calculate average total
+    average_recommend = sum_total_recommend / restaurant.reviews.length //calculate average total
+    average_clean = sum_total_clean / restaurant.reviews.length //calculate average total
+
+    //Check if average return a number
+    if(isNaN(average)){
+      average = 0
+    }
+    if(isNaN(average_clean)){
+      average_clean = 0
+    }
+    if(isNaN(average_food)){
+      average_food = 0
+    }
+    if(isNaN(average_service)){
+      average_service = 0
+    }
+    if(isNaN(average_recommend)){
+      average_recommend = 0
+    }
+
+    let data = {
+      average : average,
+      food :average_food,
+      service : average_service,
+      recommend : average_recommend,
+      clean : average_clean
+    }
+
 
     // res.send(restaurant)
-    res.render('restaurant/show', { restaurant :restaurant, average : average })
+    res.render('restaurant/show', { restaurant :restaurant, data : data })
   });
 
 }
@@ -95,7 +133,12 @@ exports.search = (req, res) => {
 
 }
 
+
 //Create Restaurant
+exports.new = (req, res)=>{
+  res.render('restaurant/new')
+}
+//create post restaurant request
 exports.createRestaurant = (req, res) =>{
 
   upload(req, res, (err) =>{
@@ -106,9 +149,7 @@ exports.createRestaurant = (req, res) =>{
     }else{
       if(req.file == undefined){
         req.flash('error', 'File is too Large')
-        res.render('restaurant/new', {
-          error: 'Error: No File Selected!'
-        })
+        res.render('restaurant/new')
       } else {
         let entry = new Restaurant({
             location : {
@@ -155,12 +196,12 @@ exports.postReview = (req, res) =>{
   let user_recommend = parseInt(req.body.recommend)
   let user_clean = parseInt(req.body.clean)
 
-  let final_rating = 0
+
   let sum = 0 // sum of all total reviews
 
   // console.log(which_restaurant);
   let temp = (user_food + user_service + user_recommend + user_clean)/ 4
-  let mean = temp.toFixed(2)
+  let mean = temp.toFixed(1)
 
   let review = new Review({
     description : user_review,
@@ -174,8 +215,10 @@ exports.postReview = (req, res) =>{
       }
   })
 
+  let final_rating_num = 0
   //get all total in Reviews
-  Review.find({}).select('rating').exec((err, r)=>{
+  Review.find({}).select('rating').exec()
+  .then((r)=>{
 
       r.forEach((x)=>{
         //get the sum of all totals
@@ -183,26 +226,37 @@ exports.postReview = (req, res) =>{
       })
       // get average total
       let tmp = sum/r.length
-      final_rating = tmp.toFixed(2)
+      console.log("tmp :" + tmp);
+
+      final_rating_num = tmp.toFixed(2)
+      console.log("final_inside :" + final_rating_num)
+
+      return final_rating_num
+
+  }).then((final_rating_num)=>{
+      console.log("final_outside 1 :" + final_rating_num)
+
+      let new_res = {
+          $set:{final_rating : final_rating_num},
+          $push:{reviews: review._id}
+      }
+
+      review.save((err)=>{
+        if(err) console.log(err);
+
+          Restaurant.findByIdAndUpdate(which_restaurant, new_res, function(error, result){
+            if(error){
+                console.log(err);
+            }
+            console.log(result)
+            req.flash('success', 'Review Added!')
+            res.redirect('/restaurants/show/'+which_restaurant)
+        });
+      })
   })
 
-  let new_res = {
-      $set:{final_rating : final_rating},
-      $push:{reviews: review._id}
-  }
-
-  review.save((err)=>{
-    if(err) console.log(err);
-
-      Restaurant.findByIdAndUpdate(which_restaurant, new_res, function(error, result){
-        if(error){
-            console.log(err);
-        }
-        console.log(result)
-        req.flash('success', 'Review Added!')
-        res.redirect('/restaurants/show/'+which_restaurant)
-    });
-  })
+console.log("final_outside :" + final_rating_num)
+console.log("sum 1:"+ sum);
 
 }
 

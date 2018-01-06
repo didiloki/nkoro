@@ -32,20 +32,13 @@ router.get('/how-it-works', (req, res) => {
 router.post('/restaurants/review', isLoggedIn, RestaurantController.postReview)
 
 /* restaurants */
-router.get('/restaurant/filter', RestaurantController.filter)
-
 router.get('/restaurants', RestaurantController.index);
-
-router.get("/restaurants/new", (req, res)=>{
-  res.render('restaurant/new')
-})
-router.post('/restaurants/create', RestaurantController.createRestaurant);
-
+router.get('/restaurant/filter', RestaurantController.filter)
+router.get("/restaurants/new", isLoggedIn, RestaurantController.new)
+router.post('/restaurants/create', isLoggedIn, RestaurantController.createRestaurant);
 router.get('/restaurants/show/:id', RestaurantController.show)
 router.get('/search/', RestaurantController.search)
-
 router.get('/profile', isLoggedIn, function(req, res) {
-      console.log(req.user)
        res.render('user/view', {
            user : req.user // get the user out of session and pass to template
        });
@@ -63,7 +56,9 @@ router.get('/profile', isLoggedIn, function(req, res) {
  router.get('/auth/facebook/callback',
             passport.authenticate('facebook',
                     { successRedirect: '/restaurants',
-                      failureRedirect: '/auth/login'
+                      failureRedirect: '/auth/login',
+                      successFlash: 'Thank you for Registering!',
+                      failureRedirect : 'Error: Please Try Again'
                     }));
 
  // route for logging out
