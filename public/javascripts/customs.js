@@ -149,6 +149,20 @@ jQuery(function($) {
 		}
 	});
 
+	/**
+	 * tokenfield
+	 */
+
+	 $('.tokenfield').tokenfield()
+
+	 $('#submit').submit(function(event){
+
+				alert('ok')
+				event.preventDefault()
+		 	 // $(".foodname").val( $(".tokenfield").tokenfield('getTokensList') )
+	 })
+
+
 
 	/**
 	 *  Arrow for Menu has sub-menu
@@ -245,42 +259,42 @@ jQuery(function($) {
 	/**
 	 * Instagram
 	 */
-	function createPhotoElement(photo) {
-		var innerHtml = $('<img>')
-		.addClass('instagram-image')
-		.attr('src', photo.images.thumbnail.url);
+	// function createPhotoElement(photo) {
+	// 	var innerHtml = $('<img>')
+	// 	.addClass('instagram-image')
+	// 	.attr('src', photo.images.thumbnail.url);
+  //
+	// 	innerHtml = $('<a>')
+	// 	.attr('target', '_blank')
+	// 	.attr('href', photo.link)
+	// 	.append(innerHtml);
+  //
+	// 	return $('<div>')
+	// 	.addClass('instagram-placeholder')
+	// 	.attr('id', photo.id)
+	// 	.append(innerHtml);
+	// }
+  //
+	// function didLoadInstagram(event, response) {
+	// 	var that = this;
+	// 	$.each(response.data, function(i, photo) {
+	// 	$(that).append(createPhotoElement(photo));
+	// 	});
+	// }
 
-		innerHtml = $('<a>')
-		.attr('target', '_blank')
-		.attr('href', photo.link)
-		.append(innerHtml);
-
-		return $('<div>')
-		.addClass('instagram-placeholder')
-		.attr('id', photo.id)
-		.append(innerHtml);
-	}
-
-	function didLoadInstagram(event, response) {
-		var that = this;
-		$.each(response.data, function(i, photo) {
-		$(that).append(createPhotoElement(photo));
-		});
-	}
-
-	$('#instagram').on('didLoadInstagram', didLoadInstagram);
-	$('#instagram').instagram({
-		count: 15,
-		userId: 3301700665,
-		accessToken: '3301700665.4445ec5.c3ba39ad7828412286c1563cac3f594b'
-	});
-
-	$('#instagram_long').on('didLoadInstagram', didLoadInstagram);
-	$('#instagram_long').instagram({
-		count: 8,
-		userId: 3301700665,
-		accessToken: '3301700665.4445ec5.c3ba39ad7828412286c1563cac3f594b'
-	});
+	// $('#instagram').on('didLoadInstagram', didLoadInstagram);
+	// $('#instagram').instagram({
+	// 	count: 15,
+	// 	userId: 3301700665,
+	// 	accessToken: '3301700665.4445ec5.c3ba39ad7828412286c1563cac3f594b'
+	// });
+  //
+	// $('#instagram_long').on('didLoadInstagram', didLoadInstagram);
+	// $('#instagram_long').instagram({
+	// 	count: 8,
+	// 	userId: 3301700665,
+	// 	accessToken: '3301700665.4445ec5.c3ba39ad7828412286c1563cac3f594b'
+	// });
 
 
 
@@ -288,61 +302,61 @@ jQuery(function($) {
 	 * Sign-in and Sign-up modal
 	 */
 
-	var $modal = $('#ajaxLoginModal');
-
-	$(document).on('click', '.btn-ajax-login,.login-box-box-action a' ,function(){
-		// create the backdrop and wait for next modal to be triggered
-
-		$modalForgotPassword.modal('hide');
-		$modalRegister.modal('hide');
-
-		$('body').modalmanager('loading');
-
-		setTimeout(function(){
-			 $modal.load('ajax-login-modal-login.html', '', function(){
-				$modal.modal();
-			});
-		}, 1000);
-	});
-
-	/** for Register Ajax Modal */
-
-	var $modalRegister = $('#ajaxRegisterModal');
-
-	$(document).on('click', '.btn-ajax-register,.register-box-box-action a' ,function(){
-
-		$modal.modal('hide');
-		$modalForgotPassword.modal('hide');
-
-		$('body').modalmanager('loading');
-
-		setTimeout(function(){
-			 $modalRegister.load('ajax-login-modal-register.html', '', function(){
-				$modalRegister.modal();
-			});
-		}, 1000);
-	});
-
-	/** for Forgot Password Ajax Modal */
-
-	var $modalForgotPassword = $('#ajaxForgotPasswordModal');
-
-	$(document).on('click', '.btn-ajax-forgot-password,.login-box-link-action a' ,function(){
-
-		$modal.modal('hide');
-		$modalRegister.modal('hide');
-
-		$('body').modalmanager('loading');
-
-		setTimeout(function(){
-
-			 $modalForgotPassword.load('ajax-login-modal-forgot-password.html', '', function(){
-				$modalForgotPassword.modal();
-			});
-
-		}, 1000);
-
-	});
+	// var $modal = $('#ajaxLoginModal');
+  //
+	// $(document).on('click', '.btn-ajax-login,.login-box-box-action a' ,function(){
+	// 	// create the backdrop and wait for next modal to be triggered
+  //
+	// 	$modalForgotPassword.modal('hide');
+	// 	$modalRegister.modal('hide');
+  //
+	// 	$('body').modalmanager('loading');
+  //
+	// 	setTimeout(function(){
+	// 		 $modal.load('ajax-login-modal-login.html', '', function(){
+	// 			$modal.modal();
+	// 		});
+	// 	}, 1000);
+	// });
+  //
+	// /** for Register Ajax Modal */
+  //
+	// var $modalRegister = $('#ajaxRegisterModal');
+  //
+	// $(document).on('click', '.btn-ajax-register,.register-box-box-action a' ,function(){
+  //
+	// 	$modal.modal('hide');
+	// 	$modalForgotPassword.modal('hide');
+  //
+	// 	$('body').modalmanager('loading');
+  //
+	// 	setTimeout(function(){
+	// 		 $modalRegister.load('ajax-login-modal-register.html', '', function(){
+	// 			$modalRegister.modal();
+	// 		});
+	// 	}, 1000);
+	// });
+  //
+	// /** for Forgot Password Ajax Modal */
+  //
+	// var $modalForgotPassword = $('#ajaxForgotPasswordModal');
+  //
+	// $(document).on('click', '.btn-ajax-forgot-password,.login-box-link-action a' ,function(){
+  //
+	// 	$modal.modal('hide');
+	// 	$modalRegister.modal('hide');
+  //
+	// 	$('body').modalmanager('loading');
+  //
+	// 	setTimeout(function(){
+  //
+	// 		 $modalForgotPassword.load('ajax-login-modal-forgot-password.html', '', function(){
+	// 			$modalForgotPassword.modal();
+	// 		});
+  //
+	// 	}, 1000);
+  //
+	// });
 
 
 	// JS init calling

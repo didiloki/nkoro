@@ -11,6 +11,7 @@ const passport = require('passport')
 const MongoStore = require('connect-mongo')(session)
 const setup = require("./config/settings")
 const multer = require('multer')
+const paginate = require('handlebars-paginate')
 
 
 ///------------App Start -----//
@@ -31,7 +32,7 @@ mongoose.connect((setup.MONGODB_LIVE), { useMongoClient : true })
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json())// get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }))
-
+app.use('/file', express.static(__dirname +'/node_modules/'));
 app.use(express.static(path.join(__dirname, 'public'))) //Set static path to public
 // MomentHandler.registerHelpers(exphbs) //handlebars date
 
@@ -40,6 +41,7 @@ app.engine('handlebars', exphbs({
   partialsDir: "views/partials",
   defaultLayout: 'main',
   helpers: {
+      paginate: paginate,
       foo: function () { return 'FOO!'; },
       iff: function(a, operator, b, opts) {
           var bool = false;

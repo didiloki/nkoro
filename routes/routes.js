@@ -32,10 +32,12 @@ router.get('/how-it-works', (req, res) => {
 router.post('/restaurants/review', isLoggedIn, RestaurantController.postReview)
 
 /* restaurants */
-router.get('/restaurants', RestaurantController.index);
+router.get('/restaurants', RestaurantController.index)
+router.get('/restaurants/finder', RestaurantController.finder)
 router.get('/restaurant/filter', RestaurantController.filter)
 router.get("/restaurants/new", isLoggedIn, RestaurantController.new)
-router.post('/restaurants/create', isLoggedIn, RestaurantController.createRestaurant);
+router.post('/restaurants/new', isLoggedIn, RestaurantController.createRestaurant);
+
 router.get('/restaurants/show/:id', RestaurantController.show)
 router.get('/search/', RestaurantController.search)
 router.get('/profile', isLoggedIn, function(req, res) {

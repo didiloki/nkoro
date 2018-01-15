@@ -13,7 +13,7 @@
 			</div>
 
 			<div class="container pt-10 pb-30">
-				<form method="post" action="/restaurants/create" encType="multipart/form-data" >
+				<form method="post" action="/restaurants/new" enctype="multipart/form-data" >
 				<div class="breadcrumb-wrapper">
 
 					<ol class="breadcrumb">
@@ -75,6 +75,20 @@
 										</div>
 
 									</div>
+
+									<div class="col-xs-12 col-sm-12">
+
+										<div class="form-group form-group-lg">
+
+											<label>Signature Food:</label>
+											<input type="text" name="food" class="form-control tokenfield" id="autocompleteTagging" value="" placeholder="tag to add?">
+											<input type="hidden" class="form-control foodname" >
+
+										</div>
+
+									</div>
+
+
 
 									<div class="col-xs-12 col-sm-12">
 
@@ -255,7 +269,7 @@
 									<label class="" for="term_accept-1">By checking this box you are agreeing to all Nkoros terms and conditions <a href="#" class="font700">Terms &amp; Conditions</a></label>
 								</div>
 
-								<input type="submit" name="Submit" class="btn btn-primary mt-15">
+								<input type="submit" name="Submit" class="btn btn-primary mt-15" id="submit">
 
 							</div>
 

@@ -23,10 +23,11 @@ const User = require('../models/user')
 
 
 
+
 //index controller
 exports.index = (req, res) =>{
 
-  let perPage = 10
+  let perPage = 15
   let page = req.query.page || 1
 
   // get all the restaurants
@@ -43,9 +44,15 @@ exports.index = (req, res) =>{
       .skip((perPage * page) - perPage)
       .limit(perPage)
       .exec(function(err, restaurants) {
+
+        //Always know the count of all the restaurants
         Restaurant.count().exec((err, count)=>{
           if (err) throw err;
-          res.render('restaurant/index', { restaurants :restaurants, current: page, pages: Math.ceil(count/perPage)})
+
+          let pageCount = count - perPage
+          console.log('pageCount', count - perPage)
+
+          res.render('restaurant/index', { restaurants :restaurants, pagination: { page: page, pageCount: pageCount }, count : count })
         })
 
         //res.render('restaurant/index', { restaurants :restaurants})
@@ -124,11 +131,35 @@ exports.show = (req, res) =>{
 //Search controller
 exports.search = (req, res) => {
 
-    let data = req.query.search
-    Restaurant.find({'name' : new RegExp(data, 'i')}).exec((err, restaurants)=>{
+  let perPage = 15
+  let page = req.query.page || 1
+
+    let foodname = req.query.search
+    let cuisine = req.query.cuisine
+    let rest
+    // Restaurant.find({'menu' : new RegExp(foodname, 'i'), 'cuisine' : new RegExp(cuisine, 'i')})
+    if(foodname == '' && cuisine == 0){
+      return res.redirect('/restaurants')
+    }else if(cuisine == 0){
+      rest = Restaurant.find({'menu' : new RegExp(foodname, 'i')})
+    }
+
+
+    rest.skip((perPage * page) - perPage)
+    .limit(perPage)
+    .exec((err, restaurants)=>{
         if (err) throw err
 
-        res.render('restaurant/search',{restaurants : restaurants})
+        //Always know the count of all the restaurants
+        Restaurant.count().exec((err, count)=>{
+          if (err) throw err;
+
+          let pageCount = count - perPage
+          console.log('pageCount', count - perPage)
+
+          res.render('restaurant/index', { restaurants :restaurants, pagination: { page: page, pageCount: pageCount }, count : count })
+        })
+
     })
 
 }
@@ -140,6 +171,7 @@ exports.new = (req, res)=>{
 }
 //create post restaurant request
 exports.createRestaurant = (req, res) =>{
+  console.log(req.body)
 
   upload(req, res, (err) =>{
     if(err){
@@ -151,30 +183,31 @@ exports.createRestaurant = (req, res) =>{
         req.flash('error', 'File is too Large')
         res.render('restaurant/new')
       } else {
+
         let entry = new Restaurant({
             location : {
-              longitude : req.body.lng,
-              latitude : req.body.lat,
               address: req.body.address,
               city : req.body.city,
               country : "Nigeria"
             },
+            points:[req.body.lng, req.body.lat],
             name : req.body.name,
             description: req.body.desc,
             phone : req.body.phone,
             email : req.body.email,
             cuisine : req.body.cuisine,
             image : req.file.filename,
-            final_rating : 0
+            final_rating : 0,
           })
 
-        entry.save((error) =>{
-          if(error) throw error
-
-          req.flash('success', 'Restaurant added and pending verification!')
-          res.redirect('/restaurants')
-
-        })
+          console.log(entry);
+        // entry.save((error) =>{
+        //   if(error) throw error
+        //
+        //   req.flash('success', 'Restaurant added and pending verification!')
+        //   res.redirect('/restaurants')
+        //
+        // })
 
 
       }
@@ -267,10 +300,12 @@ exports.filter =(req, res) =>{
   let max_amount = req.query.max
   let rating_min = req.query.ratingmin
   let rating_max = req.query.ratingmax
-
-  Restaurant.find({})
+  let cuisin = req.query.cuisine
+  let cuisine = cuisin.split(",")
+  console.log(cuisine[0]);
+ // $or:[{cuisine : "all" }, { cuisine : cuisine[0] }]
+  Restaurant.find({ $or :[{cuisine : cuisine[0]}]})
   .where('final_rating').gt(rating_min).lt(rating_max)
-  .where()
   .populate({ //deep population
       path: 'reviews',
       model: 'Review',
@@ -284,12 +319,28 @@ exports.filter =(req, res) =>{
     Restaurant.count().exec((err, count)=>{
       if (err) throw err;
 
-      // res.json(restaurants)
-      res.render('restaurant/index', { restaurants :restaurants})
+      res.json(restaurants)
+      // res.render('restaurant/index', { restaurants :restaurants})
     })
 
     //res.render('restaurant/index', { restaurants :restaurants})
   });
 
 
+}
+
+
+exports.finder = (req, res)=>{
+  console.log('ok')
+
+  let loc = [ 8.145, 1.348 ]
+
+  Restaurant.find({points : { $near : loc, $maxDistance : 8 }}).exec((err, p)=>{
+    if(err) return res.send(err)
+
+     res.send({ msgs : 'ok', c : p })
+  })
+  // .then((c)=>{
+  //   res.send({ msgs : 'ok', c : c})
+  // }).catch()
 }

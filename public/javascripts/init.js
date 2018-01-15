@@ -14,7 +14,15 @@
         let ratingmin = rating[0]
         let ratingmax = rating[1]
 
-        window.location.href = window.location.origin +'/restaurant/filter?min='+ min+ '&max=' + max + '&ratingmin=' + ratingmin + '&ratingmax='+ ratingmax + '&'
+        let cuisine = []
+
+        $.each($("input[name='filter_cuisine']:checked"), function(){
+            cuisine.push($(this).val());
+        });
+        cuisine.join(",");
+
+
+        window.location.href = window.location.origin +'/restaurant/filter?min='+ min+ '&max=' + max + '&ratingmin=' + ratingmin + '&ratingmax='+ ratingmax + '&cuisine='+cuisine
 
     })
   })

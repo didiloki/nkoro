@@ -18,6 +18,7 @@
 				<div class="row mt-40">
 
 					<div class="col-sm-4 col-md-3 mb-30">
+            	<a href="" class="btn btn-primary btn-sm btn-block mt-10"><i class="fa fa-arrow-left"></i> Back to detail</a>
 
 						<div class="section-title-02 mb-20">
 							<h4><span>Review for:</span></h4>
@@ -37,7 +38,9 @@
 								</div>
 							<!-- </a> -->
 
-							<a href="" class="btn btn-primary btn-sm btn-block mt-10"><i class="fa fa-arrow-left"></i> Back to detail</a>
+							<a href="" class="btn btn-primary btn-sm btn-block mt-10"><i class="fa fa-arrow-right"></i> Get Directions</a>
+
+
 
 						</div>
 
@@ -51,7 +54,7 @@
 
 							<div class="restaurant-sm-wrapper">
 
-								<div class="restaurant-sm-item clearfix">
+								<!-- <div class="restaurant-sm-item clearfix">
 									<a href="#">
 										<div class="image">
 											<img src="images/restaurant/03.jpg" alt="Image">
@@ -66,7 +69,7 @@
 											<p class="location"><i class="fa fa-map-marker"></i> 250 Sukhumvit Rd, Bangkok</p>
 										</div>
 									</a>
-								</div>
+								</div> -->
 
 							</div>
 
@@ -77,40 +80,52 @@
 					</div>
 
 					<div class="col-sm-8 col-md-9 mb-30">
-
             <div id="map" style="height:250px"> </div>
 
             <script>
               var map, marker
 
               function initMap() {
-                //9.05921071704827,7.499799728393555
-                var uluru = {lat: {{restaurant.location.latitude}}, lng: {{restaurant.location.longitude}} };
+                var uluru = {lat: {{restaurant.points.[1]}}, lng: {{restaurant.points.[0]}} };
                 map = new google.maps.Map(document.getElementById('map'), {
                   zoom: 14,
                   center: uluru
                 });
+                var content = "<div> OK </div>"
+                var infowindow = new google.maps.InfoWindow({
+                    content: content
+                  })
                 marker = new google.maps.Marker({
                   position: uluru,
-                  map: map
+                  animation: google.maps.Animation.DROP,
+                  map: map,
+                  title: 'Uluru (Ayers Rock)'
                 })
 
-                google.maps.event.addListener(map, "click", function (e) {
-                    //lat and lng is available in e object
-                    var latLng = e.latLng;
-                    console.log(latLng.lat() +"," + latLng.lng());
+                marker.addListener("click", function(){
+                  infowindow.open(map, marker)
+                })
 
-                    // This event listener will call addMarker() when the map is clicked.
-                    if (!marker || !marker.setPosition) {
-                      marker = new google.maps.Marker({
-                        position: latLng,
-                        map: map
-                      })
-                      } else {
-                        marker.setPosition(latLng);
-                      }
-
-                });
+                // google.maps.event.addListener(map, "click", function (e) {
+                //     //lat and lng is available in e object
+                //     var latLng = e.latLng;
+                //     console.log(latLng.lat() +"," + latLng.lng());
+                //
+                //
+                //
+                //     // This event listener will call addMarker() when the map is clicked.
+                //     if (!marker || !marker.setPosition) {
+                //       marker = new google.maps.Marker({
+                //         position: latLng,
+                //         animation: google.maps.Animation.DROP,
+                //         map: map,
+                //         title: 'Uluru (Ayers Rock)'
+                //       })
+                //       } else {
+                //         marker.setPosition(latLng);
+                //       }
+                //
+                // });
               }
             </script>
             <script async defer
@@ -238,7 +253,7 @@
 
 							</div>
 
-							<div class="clearfix text-right">
+							<div class="clearfix text-right mb-20">
 								<a href="#review-form" class="btn btn-primary btn-sm mt-20 anchor"><i class="fa fa-pencil"></i> Leave your review</a>
 							</div>
 
@@ -247,81 +262,72 @@
 								<ul class="review-item-list">
                   {{!#if restuarant.reviews.length }}
                   <!-- Lenght: {{!restuarant.reviews.length}} -->
+                  {{#if restaurant.reeviews}}
                   {{#each restaurant.reviews as |review|}}
-									<li class="clearfix">
+                  <li class="clearfix">
 
-										<div class="review-man">
+                    <div class="review-man">
 
-											<div class="image">
+                      <div class="image">
 
-												<img src="{{review.user.photo}}" alt="images">
+                        <img src="{{review.user.photo}}" alt="images">
 
-											</div>
-
-											<h6>{{ review.user.firstname }} {{ review.user.lastname }}</h6>
-											<p>from {{ review.user.city }}</p>
-
-										</div>
-
-										<div class="review-content">
-
-											<div class="review-arrow">
-												<span></span>
-											</div>
-
-											<div class="meta-top">
-
-												<div class="progress-radial progress-radial-sm progress-80">
-													<div class="overlay">
-														<div class="progress-radial-inner">
-															<div class="caption">
-
-																<p class="number">{{ review.rating.total}}</p>
-
-															</div>
-														</div>
-													</div>
-												</div>
-
-												reviewed on {{review.created_at}}
-
-											</div>
-
-											<div class="review-entry">
-												<p>{{ review.description }}</p>
-											</div>
-
-											<div class="meta-bottom">
-
-												<ul class="review-score-list clearfix">
-													<li>Food: {{review.rating.food}}</li>
-													<li>Service: {{review.rating.service}}</li>
-													<li>Recommend: {{review.rating.recommend}}</li>
-													<li>Clean: {{review.rating.clean}}</li>
-												</ul>
-
-												<!-- <ul class="review-useful clearfix">
-													<li><span>Was this review helpful? </span></li>
-													<li class="the-label rated"><a href="#"><i class="fa fa-thumbs-up"></i></a> 2</li>
-													<li class="the-label"><a href="#"><i class="fa fa-thumbs-down"></i></a> 0</li>
-													<li class="for-report"><a href="#"><i class="fa fa-flag"></i></a></li>
-												</ul> -->
-
-
-											</div>
-
-										</div>
-
-									</li>
-                  {{/each}}
-                  {{!else}}
-                  <!-- <li>
-                      <div class="alert alert-danger">
-                          No information yet
                       </div>
-                  </li> -->
 
-                  {{!/if}}
+                      <h6>{{ review.user.firstname }} {{ review.user.lastname }}</h6>
+                      <p>from {{ review.user.city }}</p>
+
+                    </div>
+
+                    <div class="review-content">
+
+                      <div class="review-arrow">
+                        <span></span>
+                      </div>
+
+                      <div class="meta-top">
+
+                        <div class="progress-radial progress-radial-sm progress-80">
+                          <div class="overlay">
+                            <div class="progress-radial-inner">
+                              <div class="caption">
+
+                                <p class="number">{{ review.rating.total}}</p>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        reviewed on {{review.created_at}}
+
+                      </div>
+
+                      <div class="review-entry">
+                        <p>{{ review.description }}</p>
+                      </div>
+
+                      <div class="meta-bottom">
+
+                        <ul class="review-score-list clearfix">
+                          <li>Food: {{review.rating.food}}</li>
+                          <li>Service: {{review.rating.service}}</li>
+                          <li>Recommend: {{review.rating.recommend}}</li>
+                          <li>Clean: {{review.rating.clean}}</li>
+                        </ul>
+
+                      </div>
+
+                    </div>
+
+                  </li>
+                  {{/each}}
+                  {{else}}
+                      <div class="alert alert-info">
+                        No Reviews Yet!
+                      </div>
+                  {{/if}}
+
 								</ul>
 
 							</div>
@@ -344,24 +350,6 @@
 
 								<div class="row gap-20">
                   <input type="hidden" name="restaurant" class="form-control" value="{{restaurant._id}}" />
-									<!-- <div class="col-xs-12 col-sm-6 col-md-6">
-
-										<div class="form-group">
-											<label>Your Name: </label>
-											<input type="text" class="form-control">
-										</div>
-
-									</div> -->
-
-									<!-- <div class="col-xs-12 col-sm-6 col-md-6">
-
-										<div class="form-group">
-											<label>Your Email Address: </label>
-											<input type="email" class="form-control">
-										</div>
-
-									</div> -->
-
 								</div>
 
 								<div class="col-5-wrapper col-3-wrapper-sm col-2-wrapper-xss gap-20">
@@ -432,22 +420,6 @@
 										</div>
 
 									</div>
-
-								<!--	<div>
-
-										 <div class="form-group">
-
-											<label>Instructor: </label>
-
-											<div class="rating-wrapper">
-												<div class="rating-item">
-                                <input type="hidden" class="rating-label" data-filled="oi oi-star" data-empty="oi oi-star" data-fractions="2" value="4.5">
-												</div>
-											</div>
-
-										</div>
-
-									</div> -->
 
 								</div>
 

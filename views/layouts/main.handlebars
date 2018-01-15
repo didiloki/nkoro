@@ -24,6 +24,7 @@
 	<!-- CSS Plugins -->
 	<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css" media="screen">
 	<link href="/stylesheets/animate.css" rel="stylesheet">
+	<link href="/file/bootstrap-tokenfield/dist/css/bootstrap-tokenfield.css" rel="stylesheet" >
 	<link href="/stylesheets/main.css" rel="stylesheet">
 	<link href="/stylesheets/component.css" rel="stylesheet">
 
@@ -94,7 +95,7 @@
                       <a id="currency-dropdown" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 
     										<i class="ion-android-globe"></i>
-                        {{ currentUser.firstname }} {{ currentUser.lastname}}
+                        {{ currentUser.firstname }}
     										<span class="caret"></span>
     									</a>
     									<ul class="dropdown-menu" aria-labelledby="user-dropdown">
@@ -123,7 +124,7 @@
 		</header>
 		{{#if alerts.error}}
 		      {{#each alerts.error as |msg|}}
-		      <div class="alert alert-danger alert-dismissable fade in">
+		      <div class="alert alert-danger alert-dismissable fade in centered">
 		          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 		          <strong>Error!</strong> {{msg}}
 		      </div>
@@ -145,114 +146,6 @@
 
 		<!-- start Footer Wrapper -->
 		<div class="footer-wrapper scrollspy-footer">
-
-			<div class="overflow-hidden">
-
-				<div class="instagram-wrapper">
-
-					<div id="instagram_long" class="instagram-long"></div>
-
-				</div>
-
-			</div>
-
-			<footer class="main-footer">
-
-				<div class="container">
-
-					<div class="row">
-
-						<div class="col-xs-12 col-sm-12 col-md-3">
-
-							<div class="footer-logo">
-								<a href="/">
-									<img src="/images/logo-white.svg" alt="Nkoro" />
-								</a>
-							</div>
-
-							<!-- <p class="about-us-footer">Abilities or he perfectly pretended so strangers be exquisite. Oh to another chamber pleased imagine do in. Went me rank at last loud shot an draw. Excellent so to no sincerity smallness... <a href="#" class="font-italic">read more</a></p> -->
-
-              <h6>Join Us On</h6>
-    					<ul class="social-footer clearfix">
-    						<li><a href="http://facebook.com/nkoro"><i class="fa fa-facebook-official"></i></a></li>
-    						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-    						<li><a href="#"><i class="fa fa-google-plus "></i></a></li>
-    					</ul>
-    					<p class="copy-right">{{copyright}}</p>
-
-						</div>
-
-						<div class="col-xs-12 col-sm-12 col-md-9">
-
-							<div class="pl-wrapper">
-
-								<div class="row">
-
-									<div class="col-xs-12 col-sm-12 col-md-10">
-
-										<div class="newsletter-footer">
-
-											<form action="#" method="post" class="">
-
-												<div class="form-group">
-													<input type="text" class="form-control" placeholder="Enter your email to get our newsletter" name="subscribe-email">
-													<input type="submit" class="btn btn-submit" value="Subscribe">
-												</div>
-
-											</form>
-
-										</div>
-
-									</div>
-
-									<div class="clear"></div>
-
-									<div class="col-xss-12 col-xs-4 col-sm-4 col-md-4 mb-10-xss">
-
-										<h4 class="footer-title">Company</h4>
-										<ul class="menu-footer clearfix">
-											<li><a href="#">About</a></li>
-											<li><a href="#">Careers</a></li>
-											<li><a href="#">Press</a></li>
-
-										</ul>
-
-									</div>
-
-									<div class="col-xss-12 col-xs-4 col-sm-4 col-md-4 mb-10-xss">
-
-										<h4 class="footer-title">Discover</h4>
-										<ul class="menu-footer clearfix">
-											<li><a href="#">About</a></li>
-											<li><a href="#">Careers</a></li>
-											<li><a href="#">Press</a></li>
-
-										</ul>
-
-									</div>
-
-									<div class="col-xss-12 col-xs-4 col-sm-4 col-md-4 mb-10-xss">
-
-										<h4 class="footer-title">Contact</h4>
-										<ul class="menu-footer clearfix">
-											<li><a href="#">About</a></li>
-											<li><a href="#">Careers</a></li>
-											<li><a href="#">Press</a></li>
-										</ul>
-
-									</div>
-								</div>
-
-							</div>
-
-						</div>
-
-					</div>
-
-				</div>
-
-			</footer>
-
 			<footer class="secondary-footer">
 
 				<div class="container">
@@ -281,7 +174,38 @@
    <a href="#"><i class="fa fa-chevron-up"></i></a>
 </div>
 <!-- end Back To Top -->
+<script>
+var x = document.getElementById("demo");
+getLocation()
+// showPosition()
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+function showPosition(position) {
+    // x.innerHTML = "Latitude: " + position.coords.latitude +
+    // "<br>Longitude: " + position.coords.longitude;
 
+		if (typeof(Storage) !== "undefined") {
+    // Code for localStorage/sessionStorage.
+				// Store
+				if(localStorage.longitude == null && localStorage.latitude == null){
+					localStorage.setItem("latitude", position.coords.latitude )
+					localStorage.setItem("longitude", position.coords.longitude )
+				}else{
+					// localStorage.getItem("latitude")
+					// x.innerHTML = "Latitude: " + localStorage.getItem("latitude") +
+			    // "<br>Longitude: " + localStorage.getItem("longitude");
+				}
+		} else {
+		    // Sorry! No Web Storage support..
+		}
+
+}
+</script>
 </body>
 <!-- JS -->
 <script type="text/javascript" src="/javascripts/jquery-1.11.3.min.js"></script>
@@ -303,7 +227,7 @@
 <script type="text/javascript" src="/javascripts/bootstrap-modalmanager.js"></script>
 <script type="text/javascript" src="/javascripts/bootstrap-modal.js"></script>
 <script type="text/javascript" src="/javascripts/bootstrap3-wysihtml5.min.js"> </script>
-<script type="text/javascript" src="/javascripts/instagram.min.js"></script>
+<script type="text/javascript" src="/file/bootstrap-tokenfield/dist/bootstrap-tokenfield.min.js"></script>
 <script type="text/javascript" src="/javascripts/customs.js"></script>
 <script type="text/javascript" src="/javascripts/init.js"></script>
 </html>
