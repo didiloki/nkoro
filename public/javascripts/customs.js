@@ -155,14 +155,16 @@ jQuery(function($) {
 
 	 $('.tokenfield').tokenfield()
 
-	 $('#submit').submit(function(event){
+	 $('#submit').click(function(event){
 
 				alert('ok')
 				event.preventDefault()
-		 	 // $(".foodname").val( $(".tokenfield").tokenfield('getTokensList') )
+		 	 $(".foodname").val( $(".tokenfield").tokenfield('getTokensList') )
 	 })
 
-
+   /**
+    * We use cookies on our website. Cookies are used to improve the functionality and use of our internet site, as well as for analytic and advertising purposes. To learn more about cookies, how we use them and how to change your cookie settings find out more here. By continuing to use this site without changing your settings you consent to our use of cookies.
+    */
 
 	/**
 	 *  Arrow for Menu has sub-menu
